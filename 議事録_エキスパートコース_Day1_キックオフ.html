@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>議事録：Lark エキスパートコース Day1 キックオフ</title>
+  <title>議事録＋復習：Lark エキスパートコース Day1 キックオフ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
     :root {
       --bg: #1a1a2e;
       --card: #16213e;
       --accent: #e94560;
       --accent-dim: #c73e54;
+      --accent-soft: rgba(233, 69, 96, 0.15);
       --text: #eaeaea;
       --text-muted: #a0a0a0;
       --border: #2a2a4a;
+      --success: #4ade80;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -24,9 +27,9 @@
       color: var(--text);
       min-height: 100vh;
       padding: 2rem;
-      line-height: 1.6;
+      line-height: 1.7;
     }
-    .container { max-width: 900px; margin: 0 auto; }
+    .container { max-width: 960px; margin: 0 auto; }
     
     header {
       margin-bottom: 2rem;
@@ -35,36 +38,52 @@
     }
     h1 {
       font-family: 'Syne', sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--accent);
       letter-spacing: 0.02em;
     }
     .meta { margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted); }
+    .badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
     
     section {
       background: var(--card);
       border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1rem;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.25rem;
       border: 1px solid var(--border);
     }
     section h2 {
       font-family: 'Syne', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 0.75rem;
-      padding-bottom: 0.35rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
       border-bottom: 1px solid var(--border);
+    }
+    section h3 {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin: 1rem 0 0.5rem;
+      font-weight: 600;
     }
     ul { list-style: none; }
     li {
-      padding-left: 1rem;
+      padding-left: 1.2rem;
       position: relative;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
       font-size: 0.9rem;
     }
     li::before {
@@ -74,21 +93,80 @@
       color: var(--accent-dim);
       font-weight: 700;
     }
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
-    .tag {
-      display: inline-block;
-      background: rgba(233, 69, 96, 0.2);
-      color: var(--accent);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      margin-right: 0.35rem;
-      margin-bottom: 0.35rem;
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+    
+    .diagram-box {
+      background: rgba(0,0,0,0.25);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1rem 0;
+      border: 1px solid var(--border);
     }
-    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-    th, td { padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
-    th { color: var(--text-muted); font-weight: 600; font-size: 0.8rem; }
+    .diagram-box .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+    .diagram-caption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { color: var(--text-muted); font-weight: 600; font-size: 0.8rem; width: 35%; }
+    
+    .term-card {
+      background: rgba(0,0,0,0.2);
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      font-size: 0.88rem;
+    }
+    .term-card strong { color: var(--accent); }
+    
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      padding-left: 1.8rem;
+      position: relative;
+    }
+    .checklist li::before {
+      content: "☐";
+      position: absolute;
+      left: 0;
+      color: var(--accent-dim);
+      font-size: 1rem;
+    }
+    
+    .flow-visual {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+    .flow-step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      text-align: center;
+      flex: 1;
+      min-width: 80px;
+    }
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    
     footer { margin-top: 2rem; padding-top: 1rem; font-size: 0.8rem; color: var(--text-muted); text-align: center; }
   </style>
 </head>
@@ -97,22 +175,35 @@
     <header>
       <h1>Lark エキスパートコース Day1 キックオフ</h1>
       <p class="meta">土曜日夜｜オンライン｜約2時間24分｜講師：寺山大夢・遠藤匠馬</p>
+      <span class="badge">議事録＋復習用</span>
     </header>
 
+    <!-- 図解1: 全体の流れ -->
     <section>
-      <h2>開催概要</h2>
-      <p><strong>参加者：</strong>鎌田・砂川・原田・藤田・山本・春山・Mako・宮平・荒川・笹原 ほか10名</p>
-      <p style="margin-top:0.5rem;"><strong>目的：</strong>外部サービス連携・DB設計の基礎、バディシステム構築</p>
+      <h2>📊 本日の流れ（図解）</h2>
+      <div class="diagram-box">
+        <div class="mermaid">
+flowchart TD
+    A[キックオフ] --> B[バディ発表]
+    B --> C[自己紹介 9名]
+    C --> D[外部連携事例]
+    D --> E[ノーコード vs GAS]
+    E --> F[3つの考え方]
+    F --> G[API・Webhook基礎]
+    G --> H[休憩・ブレイクアウト]
+    H --> I[認証・認可・MCP]
+    I --> J[質疑・写真・終了]
+        </div>
+        <p class="diagram-caption">議論の流れ</p>
+      </div>
     </section>
 
     <div class="grid2">
       <section>
-        <h2>エキスパートの2軸</h2>
-        <ul>
-          <li><strong>外部サービス連携</strong>：Base×Gemini、宴×Base、GAS</li>
-          <li><strong>データベース設計</strong>：正規化、概念設計</li>
-          <li>Day5で「Base×外部サービス」成果物発表</li>
-        </ul>
+        <h2>開催概要</h2>
+        <p><strong>参加者：</strong>鎌田・砂川・原田・藤田・山本・春山・Mako・宮平・荒川・笹原 ほか10名</p>
+        <p style="margin-top:0.5rem;"><strong>目的：</strong>外部サービス連携・DB設計の基礎、バディシステム構築</p>
+        <p style="margin-top:0.5rem;"><strong>成果物：</strong>Day5で「Base×外部サービス」発表</p>
       </section>
       <section>
         <h2>バディペア</h2>
@@ -120,30 +211,152 @@
       </section>
     </div>
 
+    <!-- 図解2: APIのマンション例え -->
     <section>
-      <h2>開発の3つの考え方</h2>
-      <span class="tag">分解する</span>
-      <span class="tag">シンプルな造り</span>
-      <span class="tag">再利用イコール正義</span>
+      <h2>🏢 図解：APIとは（マンションの例え）</h2>
+      <div class="diagram-box">
+        <div class="mermaid">
+flowchart TB
+    subgraph マンション["🏢 プロバイダー（Lark / ChatGPT / LINE 等）"]
+        R1[101号室: テーブル追加]
+        R2[102号室: レコード追加]
+        R3[103号室: フィールド追加]
+    end
+    U[自分] -->|APIキー＝鍵| R1
+    U -->|APIキー＝鍵| R2
+    U -->|APIキー＝鍵| R3
+        </div>
+        <p class="diagram-caption">各部屋＝各API。APIキー＝部屋の鍵（第三者に漏らさない）</p>
+      </div>
+      <div class="term-card">
+        <strong>API</strong>＝アプリケーション間でデータ・機能をやり取りする窓口。WebAPIが今回の対象。
+      </div>
     </section>
 
+    <!-- 図解3: API連携 vs Webhook -->
     <section>
-      <h2>API連携 vs Webhook</h2>
+      <h2>🔄 図解：API連携 vs Webhook</h2>
+      <div class="diagram-box">
+        <div class="mermaid">
+flowchart LR
+    subgraph API["API連携（自分主体）"]
+        A1[自分] -->|①リクエスト<br>データください| A2[外部システム]
+        A2 -->|②レスポンス<br>はいどうぞ| A1
+    end
+    subgraph WH["Webhook（待ち受け）"]
+        B1[外部システム] -->|①通知<br>〇〇がありました| B2[自分]
+    end
+        </div>
+        <p class="diagram-caption">API＝自分から取りに行く / Webhook＝相手から届く</p>
+      </div>
       <table>
         <tr><th>API連携</th><th>Webhook</th></tr>
-        <tr>
-          <td>自分主体でリクエスト→レスポンス</td>
-          <td>待ち状態で外部から通知</td>
-        </tr>
-        <tr>
-          <td>取得タイミングをコントロール</td>
-          <td>リアルタイム性に優れる</td>
-        </tr>
+        <tr><td>取得タイミングをコントロール</td><td>リアルタイム性に優れる</td></tr>
+        <tr><td>更新頻度が低い時に向く</td><td>変化があったらすぐ知りたい時に向く</td></tr>
+        <tr><td colspan="2"><strong>※</strong> Webhookはサービス側が用意していないと使えない</td></tr>
       </table>
     </section>
 
+    <!-- 図解4: 認証・認可 -->
     <section>
-      <h2>ネクストアクション</h2>
+      <h2>🔐 図解：認証と認可</h2>
+      <div class="diagram-box">
+        <div class="mermaid">
+flowchart TD
+    A[APIを使いたい] --> B{認証}
+    B -->|あなたは誰？| C[APIキー・パスワード等]
+    C --> D[OK 本人です]
+    D --> E{認可}
+    E -->|何をしていい？| F[スコープ・OAuth]
+    F --> G[OK この操作できます]
+    G --> H[API実行]
+        </div>
+        <p class="diagram-caption">認証＝誰？ / 認可＝何を？ Lark APIは両方必要</p>
+      </div>
+    </section>
+
+    <!-- 外部連携事例の流れ -->
+    <section>
+      <h2>📦 図解：外部連携事例の流れ</h2>
+      <h3>Base × Gemini OCR</h3>
+      <div class="flow-visual">
+        <span class="flow-step">Baseフォーム</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">PDF送信</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">GAS受信</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">Gemini OCR</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">Baseに登録</span>
+      </div>
+      <h3>宴 × Base</h3>
+      <div class="flow-visual">
+        <span class="flow-step">宴</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">スプレッドシート</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">GAS</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">Base各テーブル</span>
+      </div>
+    </section>
+
+    <!-- ノーコード vs GAS -->
+    <section>
+      <h2>🛠 ノーコード vs GAS</h2>
+      <table>
+        <tr><th>ノーコード</th><th>GAS</th></tr>
+        <tr><td>Zapier、Make、n8n</td><td>Google Apps Script</td></tr>
+        <tr><td>プログラム不要、レゴブロック感覚</td><td>すぐ開発開始、Google連携が容易</td></tr>
+        <tr><td>初めて・苦手な人向け</td><td>細かいカスタマイズ可能</td></tr>
+      </table>
+      <p style="margin-top:0.75rem; font-size:0.85rem; color:var(--text-muted);">
+        <strong>補足：</strong>遠藤氏はBase自動化（ウェブフック受信）を使わない。GASはデプロイのたびにURLが変わるため連携が煩雑。
+      </p>
+    </section>
+
+    <!-- 3つの考え方 -->
+    <section>
+      <h2>💡 開発の3つの考え方</h2>
+      <div class="term-card">
+        <strong>① 分解する</strong> — わからないことを細かく分解して理解に落とし込む
+      </div>
+      <div class="term-card">
+        <strong>② シンプルな造り</strong> — ユーザー目線で手間を省く。第三者から見てわかりやすい＝メンテナンスしやすい
+      </div>
+      <div class="term-card">
+        <strong>③ 再利用イコール正義</strong> — 正規化と同様、一箇所で管理して参照。一度構築すれば消えない資産
+      </div>
+    </section>
+
+    <!-- 質疑の要点 -->
+    <section>
+      <h2>❓ 質疑の要点（復習用）</h2>
+      <ul>
+        <li><strong>MCPとは？</strong> AI専用の通信規格。ユーザーが指示→AIが適切なAPIにアクセス。プログラムで住所を書かなくてよい</li>
+        <li><strong>API連携のデメリット？</strong> APIキー漏洩で第三者に課金されるリスク。AI系は従量課金。Lark APIは無料版で月2000回制限</li>
+        <li><strong>全サービスで連携可能？</strong> サービスごとに異なる。API・Webhookの提供有無を調べる必要あり</li>
+      </ul>
+    </section>
+
+    <!-- 復習チェックリスト -->
+    <section>
+      <h2>✅ 復習チェックリスト</h2>
+      <ul class="checklist">
+        <li>API＝窓口、APIキー＝鍵（漏らさない）</li>
+        <li>認証＝誰？ 認可＝何を？</li>
+        <li>API連携＝自分主体 / Webhook＝待ち受け</li>
+        <li>ノーコード（Zapier等）とGASの違い</li>
+        <li>3つの考え方：分解・シンプル・再利用</li>
+        <li>ノーコード（Zapier、Make、n8n）を調べてみる</li>
+        <li>API・Webhookの違いを復習</li>
+      </ul>
+    </section>
+
+    <!-- ネクストアクション -->
+    <section>
+      <h2>📌 ネクストアクション</h2>
       <ul>
         <li>バディ同士でLark上でつながり申請</li>
         <li>アンケート記入（終了後可）</li>
@@ -153,8 +366,23 @@
     </section>
 
     <footer>
-      Lark 議事録Skill により自動生成｜詳細は議事録Markdownを参照
+      Lark 議事録Skill により作成｜アーカイブ復習用｜詳細は議事録Markdownを参照
     </footer>
   </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#16213e',
+        primaryTextColor: '#eaeaea',
+        primaryBorderColor: '#e94560',
+        lineColor: '#a0a0a0',
+        secondaryColor: '#1a1a2e',
+        tertiaryColor: '#2a2a4a'
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>守成クラブ宮崎 事務局打合せ 運用フロー設計 | 2026.01.26</title>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@300;400;600;800;900&family=Kaisei+Decol:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface-2: #1c2333;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --blue: #58a6ff;
+    --blue-dim: #1f3a5f;
+    --green: #3fb950;
+    --green-dim: #1a3a2a;
+    --orange: #d29922;
+    --orange-dim: #3d2e00;
+    --red: #f85149;
+    --red-dim: #3d1418;
+    --purple: #bc8cff;
+    --purple-dim: #2a1f4e;
+    --cyan: #39d2c0;
+    --cyan-dim: #0f3d36;
+    --glow: 0 0 20px rgba(88,166,255,0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'M PLUS 1', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 48px 36px 72px;
+  }
+
+  .header {
+    position: relative;
+    padding: 40px 0 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--green), var(--orange), var(--purple));
+    border-radius: 2px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    background: var(--blue-dim);
+    border: 1px solid var(--blue);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .header-badge::before {
+    content: '●';
+    font-size: 8px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .header h1 {
+    font-family: 'Kaisei Decol', serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.35;
+    background: linear-gradient(135deg, #fff 0%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header-meta {
+    text-align: right;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 2;
+    flex-shrink: 0;
+  }
+  .header-meta strong { color: var(--text); }
+
+  .attendees {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .attendee {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .attendee-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .attendee-role {
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 3px;
+  }
+  .stat-card:nth-child(1)::after { background: var(--blue); }
+  .stat-card:nth-child(2)::after { background: var(--green); }
+  .stat-card:nth-child(3)::after { background: var(--orange); }
+  .stat-card:nth-child(4)::after { background: var(--purple); }
+  .stat-num {
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+  .stat-card:nth-child(1) .stat-num { color: var(--blue); }
+  .stat-card:nth-child(2) .stat-num { color: var(--green); }
+  .stat-card:nth-child(3) .stat-num { color: var(--orange); }
+  .stat-card:nth-child(4) .stat-num { color: var(--purple); }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .section {
+    margin-bottom: 44px;
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Kaisei Decol', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* Flow diagram */
+  .flow-container {
+    position: relative;
+    padding: 8px 0;
+  }
+  .flow-line {
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--blue), var(--green), var(--orange));
+    opacity: 0.4;
+  }
+  .flow-item {
+    position: relative;
+    padding-left: 52px;
+    margin-bottom: 18px;
+    min-height: 40px;
+  }
+  .flow-dot {
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid;
+    background: var(--bg);
+    z-index: 1;
+  }
+  .flow-time {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .flow-desc {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .flow-assignee {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* Before/After comparison */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+  .compare-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .compare-box h4 {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .compare-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    font-size: 28px;
+    color: var(--green);
+  }
+  .compare-list {
+    list-style: none;
+    font-size: 13px;
+    line-height: 2;
+  }
+  .compare-list li::before {
+    margin-right: 8px;
+    font-size: 12px;
+  }
+  .compare-list.before li::before { content: '✕'; color: var(--red); }
+  .compare-list.after li::before { content: '✓'; color: var(--green); }
+
+  /* Role assignment grid */
+  .role-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .role-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .role-card:hover {
+    border-color: var(--blue);
+    box-shadow: var(--glow);
+  }
+  .role-avatar {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    flex-shrink: 0;
+    color: #fff;
+  }
+  .role-info h5 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .role-task {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Quote block */
+  .quote-block {
+    background: var(--surface-2);
+    border-left: 4px solid var(--orange);
+    border-radius: 0 12px 12px 0;
+    padding: 28px 32px;
+    margin: 24px 0;
+  }
+  .quote-block p {
+    font-size: 15px;
+    line-height: 1.9;
+    font-style: italic;
+    color: var(--text);
+  }
+  .quote-author {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: normal;
+  }
+
+  /* Decision cards */
+  .decision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .decision-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 20px;
+    border-top: 3px solid;
+  }
+  .decision-card:nth-child(1) { border-top-color: var(--green); }
+  .decision-card:nth-child(2) { border-top-color: var(--blue); }
+  .decision-card:nth-child(3) { border-top-color: var(--cyan); }
+  .decision-card:nth-child(4) { border-top-color: var(--orange); }
+  .decision-card:nth-child(5) { border-top-color: var(--purple); }
+  .decision-card:nth-child(6) { border-top-color: var(--red); }
+  .decision-num {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .decision-card h5 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .decision-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Action items */
+  .action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .action-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 16px;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 13px;
+  }
+  .action-priority {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .priority-high { background: var(--red); }
+  .priority-mid { background: var(--orange); }
+  .priority-low { background: var(--blue); }
+  .action-owner {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .action-deadline {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .footer-logo {
+    font-family: 'Kaisei Decol', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  @media print {
+    body { background: #fff; color: #111; }
+    .page { padding: 20px; }
+    .stat-card, .compare-box, .role-card, .decision-card, .action-item {
+      border-color: #ddd;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .compare-grid { grid-template-columns: 1fr; }
+    .compare-arrow { transform: rotate(90deg); padding: 12px 0; }
+    .role-grid { grid-template-columns: 1fr; }
+    .decision-grid { grid-template-columns: 1fr; }
+    .action-item { grid-template-columns: auto 1fr; }
+    .action-owner, .action-deadline { grid-column: 2; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-badge">OPERATIONS DESIGN</div>
+        <h1>事務局打合せ<br>運用フロー設計</h1>
+      </div>
+      <div class="header-meta">
+        <strong>2026.01.26 MON</strong><br>
+        15:57 – 18:16（2h 18m）<br>
+        オンライン / Lark会議<br>
+        守成クラブ宮崎
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTENDEES -->
+  <div class="attendees">
+    <div class="attendee">
+      <div class="attendee-dot" style="background:var(--orange)"></div>
+      <div>坂口桜子 <span class="attendee-role">事務局</span></div>
+    </div>
+    <div class="attendee">
+      <div class="attendee-dot" style="background:var(--blue)"></div>
+      <div>岩切 葵 <span class="attendee-role">会計</span></div>
+    </div>
+    <div class="attendee">
+      <div class="attendee-dot" style="background:var(--green)"></div>
+      <div>寺山大夢 <span class="attendee-role">Lark研究所</span></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">7</div>
+      <div class="stat-label">決定事項</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">6</div>
+      <div class="stat-label">役割分担</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">10</div>
+      <div class="stat-label">ネクストアクション</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2h18m</div>
+      <div class="stat-label">会議時間</div>
+    </div>
+  </div>
+
+  <!-- CORE PROBLEM -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon" style="background:var(--red-dim); color:var(--red);">⚡</div>
+      <div>
+        <div class="section-title">解決すべき課題</div>
+        <div class="section-subtitle">Why this meeting was necessary</div>
+      </div>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-box" style="border-color:var(--red); border-width:1px;">
+        <h4><span style="color:var(--red);">●</span> 現状の問題</h4>
+        <ul class="compare-list before">
+          <li>寺山氏に全業務が集中（属人化）</li>
+          <li>例会直前に深夜まで電話対応が常態化</li>
+          <li>ゲスト登録でLステップ再開→変更混入</li>
+          <li>変更が事務局に伝わらず代表から指摘</li>
+          <li>名簿の人数不一致が発生</li>
+        </ul>
+      </div>
+      <div class="compare-arrow">→</div>
+      <div class="compare-box" style="border-color:var(--green); border-width:1px;">
+        <h4><span style="color:var(--green);">●</span> 目指す姿</h4>
+        <ul class="compare-list after">
+          <li>寺山氏がいなくても回る体制</li>
+          <li>役割分担で負荷を分散</li>
+          <li>ゲスト別ルートで干渉ゼロ</li>
+          <li>変更は必ず事務局経由で共有</li>
+          <li>Larkが唯一の正（Single Source of Truth）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUEST FLOW REDESIGN -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon" style="background:var(--green-dim); color:var(--green);">🔀</div>
+      <div>
+        <div class="section-title">ゲスト登録の分離設計</div>
+        <div class="section-subtitle">Lステップから完全独立した新ルート</div>
+      </div>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-box">
+        <h4 style="color:var(--red);">❌ 旧フロー</h4>
+        <ul class="compare-list before" style="font-size:12px; line-height:2.2;">
+          <li>ゲストもLステップで登録</li>
+          <li>締切後にゲスト追加 → Lステップ再開</li>
+          <li>再開中に会員が変更 → 名簿混乱</li>
+          <li>毎月フォームを作り直す手間</li>
+          <li>寺山氏しか対応できない</li>
+        </ul>
+      </div>
+      <div class="compare-arrow">→</div>
+      <div class="compare-box">
+        <h4 style="color:var(--green);">✅ 新フロー</h4>
+        <ul class="compare-list after" style="font-size:12px; line-height:2.2;">
+          <li>ゲスト専用Larkフォームで受付</li>
+          <li>Lステップは一切触らない</li>
+          <li>フォーム入力 → Lark自動反映</li>
+          <li>注意事項もフォームに記載（汎用）</li>
+          <li>紹介者がリマインド責任を持つ</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:16px; padding:16px 20px; background:var(--surface); border:1px solid var(--border); border-radius:10px; font-size:13px; color:var(--text-muted);">
+      <strong style="color:var(--cyan);">💡 他会場会員も同じ仕組み：</strong> 締切後の他会場参加者もLarkフォーム経由に統一。入会決定時のみLステップ登録を案内。
+    </div>
+  </div>
+
+  <!-- MONTHLY FLOW -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon" style="background:var(--blue-dim); color:var(--blue);">📋</div>
+      <div>
+        <div class="section-title">月次運用フロー（新体制）</div>
+        <div class="section-subtitle">Monthly operation flow with new assignments</div>
+      </div>
+    </div>
+    <div class="flow-container">
+      <div class="flow-line"></div>
+
+      <div class="flow-item">
+        <div class="flow-dot" style="border-color:var(--blue);"></div>
+        <div class="flow-time" style="color:var(--blue);">配信3日前</div>
+        <div class="flow-desc">Lステップの申し込みフォーム作成</div>
+        <span class="flow-assignee" style="background:var(--purple-dim); color:var(--purple);">髙八重</span>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-dot" style="border-color:var(--blue);"></div>
+        <div class="flow-time" style="color:var(--blue);">毎月1日</div>
+        <div class="flow-desc">例会案内を一斉配信</div>
+        <span class="flow-assignee" style="background:var(--purple-dim); color:var(--purple);">髙八重</span>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-dot" style="border-color:var(--cyan);"></div>
+        <div class="flow-time" style="color:var(--cyan);">配信後〜締切</div>
+        <div class="flow-desc">未回答者への催促（上限3回）</div>
+        <span class="flow-assignee" style="background:var(--purple-dim); color:var(--purple);">髙八重</span>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-dot" style="border-color:var(--green);"></div>
+        <div class="flow-time" style="color:var(--green);">例会1週間前（日曜）</div>
+        <div class="flow-desc">Lステップ申し込み締切</div>
+        <span class="flow-assignee" style="background:var(--orange-dim); color:var(--orange);">自動</span>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-dot" style="border-color:var(--green);"></div>
+        <div class="flow-time" style="color:var(--green);">締切翌日（月曜）</div>
+        <div class="flow-desc">CSV出力 → Larkへ転記</div>
+        <span class="flow-assignee" style="background:var(--blue-dim); color:var(--blue);">岩切</span>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-dot" style="border-color:var(--green);"></div>
+        <div class="flow-time" style="color:var(--green);">転記完了後</div>
+        <div class="flow-desc">連絡担当者へ名簿確認の配信</div>
+        <span class="flow-assignee" style="background:var(--blue-dim); color:var(--blue);">岩切</span>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-dot" style="border-color:var(--orange);"></div>
+        <div class="flow-time" style="color:var(--orange);">締切〜例会前</div>
+        <div class="flow-desc">ゲスト・他会場はLarkフォームで随時受付</div>
+        <span class="flow-assignee" style="background:var(--orange-dim); color:var(--orange);">坂口</span>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-dot" style="border-color:var(--orange);"></div>
+        <div class="flow-time" style="color:var(--orange);">例会前</div>
+        <div class="flow-desc">ブース出展案内 / 2部会案内</div>
+        <span class="flow-assignee" style="background:var(--cyan-dim); color:var(--cyan);">長＋広瀬 / 高橋</span>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-dot" style="border-color:var(--red);"></div>
+        <div class="flow-time" style="color:var(--red);">例会後</div>
+        <div class="flow-desc">アンケート配信 / キャンセル料送信 / 緑会案内</div>
+        <span class="flow-assignee" style="background:var(--cyan-dim); color:var(--cyan);">長＋児玉 / 高橋</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROLE ASSIGNMENT -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon" style="background:var(--purple-dim); color:var(--purple);">👥</div>
+      <div>
+        <div class="section-title">役割分担マップ</div>
+        <div class="section-subtitle">Who does what — new assignments</div>
+      </div>
+    </div>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-avatar" style="background:linear-gradient(135deg, #6e40c9, var(--purple));">髙</div>
+        <div class="role-info">
+          <h5>髙八重 充</h5>
+          <div class="role-task">Lステップのフォーム作成・配信・催促<br>（寺山氏から移管。1月中にレクチャー済み）</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-avatar" style="background:linear-gradient(135deg, #1a6dd1, var(--blue));">岩</div>
+        <div class="role-info">
+          <h5>岩切 葵</h5>
+          <div class="role-task">CSV→Lark転記 / 連絡担当管理・配信<br>世話人アンケート配信 / スケジュール表作成</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-avatar" style="background:linear-gradient(135deg, #0d8a72, var(--cyan));">長</div>
+        <div class="role-info">
+          <h5>長 智子</h5>
+          <div class="role-task">ブース出展案内 / キャンセル料送信<br>例会後アンケート / 各担当とのやり取り</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-avatar" style="background:linear-gradient(135deg, #b35900, var(--orange));">坂</div>
+        <div class="role-info">
+          <h5>坂口 桜子</h5>
+          <div class="role-task">全体進捗管理・監督 / ゴーサイン判断<br>ゲスト・他会場の直接入力 / 代表への報告</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-avatar" style="background:linear-gradient(135deg, #1a8c4e, var(--green));">風</div>
+        <div class="role-info">
+          <h5>中平 風</h5>
+          <div class="role-task">議事録アジェンダ作成・転記<br>Lステップの個別変更対応の確認</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-avatar" style="background:linear-gradient(135deg, #c93d3d, var(--red));">寺</div>
+        <div class="role-info">
+          <h5>寺山 大夢</h5>
+          <div class="role-task">システム設計・構築（エンジニア役）<br>レクチャー・マニュアル作成支援</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon" style="background:var(--orange-dim); color:var(--orange);">💬</div>
+      <div>
+        <div class="section-title">寺山氏の提言：「特別対応の罠」</div>
+        <div class="section-subtitle">Key insight from the discussion</div>
+      </div>
+    </div>
+    <div class="quote-block">
+      <p>「こういう事情があって」と個別最適を進めると、業務は複雑化する一方。<br>ツールの問題ではなく、<strong style="color:var(--orange);">システムに人が合わせる</strong>という前提が必要。<br>例外対応を続けると、結局「俺じゃないとわからない」状態に戻る。<br>ずっと良くなっているように見せかけて、良くなっていない。</p>
+      <div class="quote-author">— 寺山大夢（Lark研究所）</div>
+    </div>
+    <div style="padding:16px 20px; background:var(--surface); border:1px solid var(--border); border-radius:10px; font-size:13px;">
+      <strong style="color:var(--orange);">結論：</strong>
+      <span style="color:var(--text-muted);">「例外」ではなく「別ルート」として正式化し、シンプルな仕組みで対応する。優しさを仕組みに変える。</span>
+    </div>
+  </div>
+
+  <!-- DECISIONS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon" style="background:var(--green-dim); color:var(--green);">✅</div>
+      <div>
+        <div class="section-title">決定事項</div>
+        <div class="section-subtitle">7 decisions made</div>
+      </div>
+    </div>
+    <div class="decision-grid">
+      <div class="decision-card">
+        <div class="decision-num">DECISION 01</div>
+        <h5>ゲスト登録の分離</h5>
+        <p>Lステップから完全分離。Larkフォームで受付→自動反映</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-num">DECISION 02</div>
+        <h5>他会場も同じルート</h5>
+        <p>締切後の他会場参加者もLarkフォーム経由に統一</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-num">DECISION 03</div>
+        <h5>6名で役割分担</h5>
+        <p>髙八重・岩切・長・坂口・中平・寺山で業務を分散</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-num">DECISION 04</div>
+        <h5>催促は3回まで</h5>
+        <p>チェック業務を増やさない。赤バッジ以上は1回のみ</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-num">DECISION 05</div>
+        <h5>変更共有ライン確立</h5>
+        <p>寺山→坂口→全体の一直線。事務局が必ず経由</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-num">DECISION 06</div>
+        <h5>レクチャー＋録画</h5>
+        <p>1/27に全員で聴講。担当者がマニュアルを作成</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon" style="background:var(--cyan-dim); color:var(--cyan);">🚀</div>
+      <div>
+        <div class="section-title">ネクストアクション</div>
+        <div class="section-subtitle">Prioritized action items</div>
+      </div>
+    </div>
+    <div class="action-list">
+      <div class="action-item">
+        <div class="action-priority priority-high">1</div>
+        <div>ゲスト用Larkフォームを作成・テスト</div>
+        <span class="action-owner" style="background:var(--green-dim); color:var(--green);">寺山</span>
+        <span class="action-deadline">2月例会まで</span>
+      </div>
+      <div class="action-item">
+        <div class="action-priority priority-high">2</div>
+        <div>月次スケジュール表のたたき台作成</div>
+        <span class="action-owner" style="background:var(--blue-dim); color:var(--blue);">岩切</span>
+        <span class="action-deadline">1/27 MTGまで</span>
+      </div>
+      <div class="action-item">
+        <div class="action-priority priority-high">3</div>
+        <div>1/27全体MTGで役割分担を共有・承認</div>
+        <span class="action-owner" style="background:var(--orange-dim); color:var(--orange);">坂口＋寺山</span>
+        <span class="action-deadline">1/27</span>
+      </div>
+      <div class="action-item">
+        <div class="action-priority priority-mid">4</div>
+        <div>CSV→Lark転記のレクチャー（録画付き）</div>
+        <span class="action-owner" style="background:var(--green-dim); color:var(--green);">寺山→岩切</span>
+        <span class="action-deadline">1/27</span>
+      </div>
+      <div class="action-item">
+        <div class="action-priority priority-mid">5</div>
+        <div>各担当者への業務レクチャー（録画付き）</div>
+        <span class="action-owner" style="background:var(--green-dim); color:var(--green);">寺山</span>
+        <span class="action-deadline">1/27</span>
+      </div>
+      <div class="action-item">
+        <div class="action-priority priority-mid">6</div>
+        <div>実行委員への世話人志望確認の個別連絡</div>
+        <span class="action-owner" style="background:var(--orange-dim); color:var(--orange);">坂口</span>
+        <span class="action-deadline">近日中</span>
+      </div>
+      <div class="action-item">
+        <div class="action-priority priority-mid">7</div>
+        <div>Lark移行の背景資料を全体に共有</div>
+        <span class="action-owner" style="background:var(--green-dim); color:var(--green);">寺山</span>
+        <span class="action-deadline">1/27前</span>
+      </div>
+      <div class="action-item">
+        <div class="action-priority priority-low">8</div>
+        <div>連絡担当の再編案を作成</div>
+        <span class="action-owner" style="background:var(--blue-dim); color:var(--blue);">岩切</span>
+        <span class="action-deadline">次回世話人会</span>
+      </div>
+      <div class="action-item">
+        <div class="action-priority priority-low">9</div>
+        <div>他会場用Larkフォームを作成</div>
+        <span class="action-owner" style="background:var(--green-dim); color:var(--green);">寺山</span>
+        <span class="action-deadline">2月例会まで</span>
+      </div>
+      <div class="action-item">
+        <div class="action-priority priority-low">10</div>
+        <div>2月例会からゲスト別ルート運用を開始</div>
+        <span class="action-owner" style="background:var(--purple-dim); color:var(--purple);">全員</span>
+        <span class="action-deadline">2月例会</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">守成クラブ宮崎 ナレッジベース</div>
+    <div>議事録 No.20260126-OPS ・ 自動生成 ・ 2026.01.26</div>
+  </div>
+
+</div>
+</body>
+</html>

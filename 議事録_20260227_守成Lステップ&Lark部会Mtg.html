@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>守成クラブ宮崎 Lステップ＆Lark部会Mtg 議事録 | 2026.02.27</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --surface-2: #22222e;
+    --border: #2a2a3a;
+    --text: #e8e6f0;
+    --text-dim: #8888a0;
+    --lime: #a8e06c;
+    --lime-dark: #6b9e3a;
+    --coral: #ff6b6b;
+    --coral-dim: #cc5555;
+    --blue: #6ba3ff;
+    --purple: #b388ff;
+    --amber: #ffd54f;
+    --teal: #4dd0c4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 48px 36px 64px;
+  }
+
+  /* Header */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-tag {
+    display: inline-block;
+    background: var(--lime);
+    color: var(--bg);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.35;
+    letter-spacing: 0.5px;
+  }
+  .header h1 span {
+    color: var(--lime);
+  }
+  .header-meta {
+    text-align: right;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.9;
+    white-space: nowrap;
+  }
+
+  /* Attendees */
+  .attendees {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .att {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px 5px 5px;
+    font-size: 12px;
+  }
+  .att-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--bg);
+  }
+  .att-role { color: var(--text-dim); font-size: 10px; }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .sec-title {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sec-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  /* Topic cards */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .topic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+  }
+  .topic.full { grid-column: 1 / -1; }
+  .topic-tag {
+    position: absolute;
+    top: -9px;
+    left: 16px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding: 2px 10px;
+    border-radius: 8px;
+    color: var(--bg);
+  }
+  .topic h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 2px;
+  }
+  .topic ul { list-style: none; padding: 0; }
+  .topic li {
+    font-size: 12.5px;
+    padding: 3px 0 3px 16px;
+    position: relative;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .topic li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--lime);
+    font-weight: 700;
+  }
+
+  /* Debate panel */
+  .debate {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .debate-header {
+    background: linear-gradient(135deg, #2a1a3a, #1a2a3a);
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .debate-body {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 0;
+    padding: 20px;
+  }
+  .debate-side {
+    padding: 16px;
+    border-radius: 8px;
+  }
+  .debate-side.left { background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.2); }
+  .debate-side.right { background: rgba(168,224,108,0.08); border: 1px solid rgba(168,224,108,0.2); }
+  .debate-side h4 {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .debate-side.left h4 { color: var(--coral); }
+  .debate-side.right h4 { color: var(--lime); }
+  .debate-side .name {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .debate-side ul { list-style: none; padding: 0; }
+  .debate-side li {
+    font-size: 12px;
+    padding: 3px 0;
+    line-height: 1.6;
+  }
+  .debate-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--text-dim);
+  }
+  .debate-resolution {
+    margin-top: 16px;
+    padding: 14px 20px;
+    background: rgba(77,208,196,0.08);
+    border: 1px solid rgba(77,208,196,0.2);
+    border-radius: 8px;
+    margin: 16px 20px 20px;
+  }
+  .debate-resolution h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .debate-resolution p {
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  /* Decisions */
+  .decisions-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .dec {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    border-top: 3px solid var(--lime);
+  }
+  .dec h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--lime);
+    margin-bottom: 6px;
+  }
+  .dec p {
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  /* Action table */
+  .action-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .action-table th {
+    background: var(--surface-2);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+  }
+  .action-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .badge-red { background: rgba(255,107,107,0.15); color: var(--coral); }
+  .badge-amber { background: rgba(255,213,79,0.15); color: var(--amber); }
+  .badge-blue { background: rgba(107,163,255,0.15); color: var(--blue); }
+
+  /* Timeline */
+  .timeline {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    margin: 8px 0;
+  }
+  .tl-item {
+    flex: 1;
+    padding: 14px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-align: center;
+    font-size: 11.5px;
+    line-height: 1.5;
+    position: relative;
+  }
+  .tl-item:first-child { border-radius: 8px 0 0 8px; }
+  .tl-item:last-child { border-radius: 0 8px 8px 0; }
+  .tl-item strong {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+  .tl-item:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--lime);
+    font-size: 14px;
+    z-index: 1;
+    font-weight: 700;
+  }
+  .tl-item.active {
+    background: rgba(168,224,108,0.1);
+    border-color: var(--lime-dark);
+  }
+  .tl-item.active strong { color: var(--lime); }
+
+  /* Footer */
+  .footer {
+    margin-top: 44px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 768px) {
+    .page { padding: 24px 16px; }
+    .header { grid-template-columns: 1fr; }
+    .header-meta { text-align: left; }
+    .topics-grid { grid-template-columns: 1fr; }
+    .decisions-grid { grid-template-columns: repeat(2, 1fr); }
+    .debate-body { grid-template-columns: 1fr; }
+    .debate-vs { padding: 8px 0; }
+    .timeline { flex-wrap: wrap; }
+    .tl-item { min-width: 45%; }
+    .tl-item::after { display: none; }
+  }
+  @media print {
+    body { background: #fff; color: #111; }
+    .page { padding: 20px; }
+    .topic, .debate, .dec { border-color: #ddd; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="header-tag">守成クラブ宮崎 ─ 議事録</div>
+      <h1><span>Lステップ＆Lark</span>部会ミーティング</h1>
+    </div>
+    <div class="header-meta">
+      <strong style="color:var(--text)">2026年2月27日（木）</strong><br>
+      20:50〜22:41<br>
+      オンライン（Lark）<br>
+      約1時間50分
+    </div>
+  </div>
+
+  <!-- Attendees -->
+  <div class="attendees">
+    <div class="att"><div class="att-dot" style="background:var(--lime)">寺</div> 寺山 大夢 <span class="att-role">部会リーダー</span></div>
+    <div class="att"><div class="att-dot" style="background:var(--coral)">岩</div> 岩切 葵</div>
+    <div class="att"><div class="att-dot" style="background:var(--blue)">衣</div> 衣笠 遼司</div>
+    <div class="att"><div class="att-dot" style="background:var(--amber)">緒</div> 緒方 総隆 <span class="att-role">代表</span></div>
+    <div class="att"><div class="att-dot" style="background:var(--purple)">髙</div> 髙八重 充</div>
+    <div class="att"><div class="att-dot" style="background:var(--teal)">中</div> 中平 風 <span class="att-role">事務局</span></div>
+    <div class="att"><div class="att-dot" style="background:#ff9cee">坂</div> 坂口 桜子 <span class="att-role">事務局</span></div>
+    <div class="att"><div class="att-dot" style="background:#90caf9">長</div> 長 智子</div>
+  </div>
+
+  <!-- Lステップ引き継ぎタイムライン -->
+  <div class="section">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--purple);">📱</div>
+      Lステップ引き継ぎロードマップ
+    </div>
+    <div class="timeline">
+      <div class="tl-item active"><strong style="color:var(--lime)">3月</strong>準備OK<br>寺山氏と一緒に</div>
+      <div class="tl-item"><strong>4月</strong>一緒に実施<br>記念例会</div>
+      <div class="tl-item"><strong>5月〜</strong>髙八重氏が自走<br>寺山氏がチェック</div>
+      <div class="tl-item"><strong>6〜7月</strong>バトンタッチ<br>完全移管</div>
+    </div>
+  </div>
+
+  <!-- Main Topics -->
+  <div class="section">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--lime);">📋</div>
+      主要トピック
+    </div>
+    <div class="topics-grid">
+      <div class="topic">
+        <div class="topic-tag" style="background:var(--lime);">TOPIC 01</div>
+        <h3>3周年記念リッチメニュー</h3>
+        <ul>
+          <li>AI生成のビジュアルで告知バナー作成 → 好評</li>
+          <li>上段3つ：3周年告知（リンクなし＝告知のみ）</li>
+          <li>下段3つ：申込み・実績報告・ゲスト</li>
+          <li>本日中に設置完了（髙八重氏が即座に作成）</li>
+          <li>目標参加者：200名（現状150〜160名）</li>
+        </ul>
+      </div>
+      <div class="topic">
+        <div class="topic-tag" style="background:var(--amber);">TOPIC 02</div>
+        <h3>会員情報変更の案内</h3>
+        <ul>
+          <li>リッチメニューから外れるため代替手段が必要</li>
+          <li>交流LINEグループにリンク付きで案内投稿</li>
+          <li>「会員情報変更」とトーク入力でリンク返信は維持</li>
+          <li>連絡担当から個別に声かけも有効</li>
+        </ul>
+      </div>
+      <div class="topic full">
+        <div class="topic-tag" style="background:var(--coral);">TOPIC 03 ─ 最大議題</div>
+        <h3>会員名簿フォーマット：Lark出力 vs スプレッドシート</h3>
+        <ul>
+          <li>2月例会からLark出力の名簿を初使用 → 衣笠氏が「見にくい」と問題提起</li>
+          <li>全メンバーから意見聴取：読み仮名・役職順・TM表示・文字サイズ・業種詳細など多数の改善要望</li>
+          <li>衣笠氏「スプレッドシートに戻したい」と明言 ↔ 寺山氏「属人化排除・エラー防止のためLark一本化を推奨」</li>
+          <li>緒方代表「内容よりレイアウト・デザイン性の問題。二人で話し合い、まとまらなければ4役会議へ」</li>
+          <li>岩切氏「まず掲載項目を精査 → 1行で収まるか判断 → 収まらなければ2行 or スプシ併用」</li>
+          <li>3月は練習、4月3周年にはちゃんとした形を目指す</li>
+        </ul>
+      </div>
+      <div class="topic">
+        <div class="topic-tag" style="background:var(--teal);">TOPIC 04</div>
+        <h3>バッジ・名札管理のLark化</h3>
+        <ul>
+          <li>バッジ未渡し者が残る管理を実現したい</li>
+          <li>名札作成チェックボックスをLarkに実装</li>
+          <li>新規入会者は自動でチェックがつく仕組み</li>
+          <li>寺山氏が後日、中平氏と個別で対応</li>
+        </ul>
+      </div>
+      <div class="topic">
+        <div class="topic-tag" style="background:var(--blue);">TOPIC 05</div>
+        <h3>Lステップ→Lark移行状況</h3>
+        <ul>
+          <li>ほぼ全メンバーの移行完了</li>
+          <li>残タスク：ブース案内の人数はみ出し対応のみ</li>
+          <li>3/9（月）8:30 データ連携作業（寺山・岩切）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Debate Panel -->
+  <div class="section">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--coral);">⚔</div>
+      名簿フォーマット：対立構造と落としどころ
+    </div>
+    <div class="debate">
+      <div class="debate-header">🔥 会議で最も時間を費やした議論（約50分）</div>
+      <div class="debate-body">
+        <div class="debate-side left">
+          <h4>スプシに戻したい派</h4>
+          <div class="name">衣笠 遼司</div>
+          <ul>
+            <li>・ゲストの第一印象を大事にしたい</li>
+            <li>・2行レイアウトで情報量を確保</li>
+            <li>・読み仮名・バッジ色・TM表示が必要</li>
+            <li>・今までの積み上げを活かしたい</li>
+            <li>・「これを出すべきじゃない」と率直に表明</li>
+          </ul>
+        </div>
+        <div class="debate-vs">VS</div>
+        <div class="debate-side right">
+          <h4>Lark一本化を推進したい派</h4>
+          <div class="name">寺山 大夢</div>
+          <ul>
+            <li>・属人化排除・ヒューマンエラー防止</li>
+            <li>・1行シンプルで必要最低限の情報</li>
+            <li>・名刺が最も情報量を持つ</li>
+            <li>・深夜の名簿照合作業を再発させたくない</li>
+            <li>・運営のスムーズさがみんなをハッピーに</li>
+          </ul>
+        </div>
+      </div>
+      <div class="debate-resolution">
+        <h4>📌 緒方代表の裁定 ＋ 岩切氏の仲裁案</h4>
+        <p>
+          ① まず寺山氏・衣笠氏の二人で話し合いの場を設ける<br>
+          ② まとまらなければ4役会議（代表含む）で協議する<br>
+          ③ 岩切氏の提案：掲載項目を精査 → 1行で収まるか判断 → 収まらなければ2行 or スプシ併用<br>
+          ④ データ管理はLarkで一本化を維持。出力・整形部分のみが議論対象<br>
+          ⑤ 3月は練習、4月の3周年記念例会には完成版を出す
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decisions -->
+  <div class="section">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--amber);">✓</div>
+      決定事項
+    </div>
+    <div class="decisions-grid">
+      <div class="dec">
+        <h4>リッチメニュー</h4>
+        <p>3周年仕様に本日中変更。4月まで告知バナー常時表示</p>
+      </div>
+      <div class="dec">
+        <h4>名簿フォーマット</h4>
+        <p>寺山×衣笠で話し合い。まとまらなければ4役会議へ</p>
+      </div>
+      <div class="dec">
+        <h4>データ管理</h4>
+        <p>Lark一本化は維持。出力方法のみ議論対象</p>
+      </div>
+      <div class="dec">
+        <h4>バッジ・名札</h4>
+        <p>Lark上で管理。寺山氏が実装（中平氏と連携）</p>
+      </div>
+      <div class="dec">
+        <h4>会員情報変更</h4>
+        <p>交流LINEでリンク告知。リッチメニュー外でも案内</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="section">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--blue);">⚡</div>
+      ネクストアクション
+    </div>
+    <table class="action-table">
+      <thead>
+        <tr><th>アクション</th><th>担当</th><th>期限</th><th>優先度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>3周年記念リッチメニューを設置</td><td>髙八重</td><td>本日中</td><td><span class="badge badge-red">即時</span></td></tr>
+        <tr><td>リッチメニュー切り替えパターンを資料化</td><td>寺山・髙八重</td><td>3月上旬</td><td><span class="badge badge-amber">高</span></td></tr>
+        <tr><td>名簿フォーマットについて二人で話し合い</td><td>寺山・衣笠</td><td>3月例会前</td><td><span class="badge badge-red">最重要</span></td></tr>
+        <tr><td>3月名簿を作成（練習として）</td><td>衣笠 or 寺山</td><td>3月例会まで</td><td><span class="badge badge-amber">高</span></td></tr>
+        <tr><td>バッジ・名札管理をLarkに実装</td><td>寺山（中平と連携）</td><td>後日</td><td><span class="badge badge-blue">中</span></td></tr>
+        <tr><td>ブース案内の人数はみ出し対応確認</td><td>寺山・長</td><td>後日</td><td><span class="badge badge-blue">中</span></td></tr>
+        <tr><td>会員情報変更リンクを交流LINEに投稿</td><td>事務局</td><td>近日中</td><td><span class="badge badge-amber">高</span></td></tr>
+        <tr><td>3/9（月）8:30 Lステップ→Larkデータ連携</td><td>寺山・岩切</td><td>3/9</td><td><span class="badge badge-red">必須</span></td></tr>
+        <tr><td>4月3周年記念例会向け名簿の完成版作成</td><td>関係者全員</td><td>4月例会まで</td><td><span class="badge badge-amber">高</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span>守成クラブ宮崎 Lステップ＆Lark部会 | Lark Minutes 文字起こしより作成</span>
+    <span>2026.02.27</span>
+  </div>
+
+</div>
+</body>
+</html>

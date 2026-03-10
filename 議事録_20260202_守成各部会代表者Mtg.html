@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>守成クラブ宮崎 各部会代表者Mtg | 2026.02.02</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Shippori+Mincho+B1:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --surface: #ffffff;
+    --surface-alt: #f0ebe3;
+    --border: #d4c9b8;
+    --border-light: #e8e0d4;
+    --text: #2c2418;
+    --text-muted: #8a7d6b;
+    --ink: #1a1208;
+    --red: #c0392b;
+    --red-soft: #fdf0ee;
+    --blue: #2471a3;
+    --blue-soft: #eaf4fb;
+    --green: #1e8449;
+    --green-soft: #eafaf0;
+    --orange: #ca6f1e;
+    --orange-soft: #fef5e7;
+    --purple: #6c3483;
+    --purple-soft: #f4ecf7;
+    --gold: #b7950b;
+    --gold-soft: #fef9e7;
+    --teal: #148f77;
+    --teal-soft: #e8f8f5;
+    --accent: #c0392b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 15px; }
+  body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 48px 32px;
+    background: linear-gradient(135deg, #1a1208 0%, #2c2418 40%, #3d3224 100%);
+    color: #faf7f2;
+    border-radius: 16px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(192,57,43,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(36,113,163,0.08) 0%, transparent 50%);
+  }
+  .header * { position: relative; }
+  .header .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 4px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .header .sub {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    letter-spacing: 0.08em;
+  }
+
+  /* Attendees */
+  .attendees {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 32px;
+    padding: 0 8px;
+  }
+  .attendees .person {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .attendees .person.highlight {
+    background: var(--ink);
+    color: #faf7f2;
+    border-color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .stat-card .label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 32px;
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-head .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .section-head h2 {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  /* Division grid */
+  .division-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .div-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 18px;
+    transition: transform 0.15s;
+    border-left: 4px solid var(--border);
+  }
+  .div-card:hover { transform: translateY(-2px); }
+  .div-card.red { border-left-color: var(--red); }
+  .div-card.blue { border-left-color: var(--blue); }
+  .div-card.green { border-left-color: var(--green); }
+  .div-card.orange { border-left-color: var(--orange); }
+  .div-card.purple { border-left-color: var(--purple); }
+  .div-card.gold { border-left-color: var(--gold); }
+  .div-card.teal { border-left-color: var(--teal); }
+  .div-card .div-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .div-card .div-lead {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .div-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .div-card ul li {
+    font-size: 0.8rem;
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .div-card ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+  }
+  .div-card .tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .tag-decision { background: var(--green-soft); color: var(--green); }
+  .tag-issue { background: var(--orange-soft); color: var(--orange); }
+  .tag-test { background: var(--blue-soft); color: var(--blue); }
+  .tag-hold { background: var(--red-soft); color: var(--red); }
+
+  .div-card.wide {
+    grid-column: 1 / -1;
+  }
+
+  /* Target section */
+  .target-box {
+    background: linear-gradient(135deg, var(--ink) 0%, #3d3224 100%);
+    color: #faf7f2;
+    border-radius: 14px;
+    padding: 28px 32px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .target-box .target-num {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(192,57,43,0.3);
+  }
+  .target-box .target-label {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+  }
+  .target-box .target-note {
+    font-size: 0.78rem;
+    opacity: 0.55;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* Decisions */
+  .decisions-list {
+    display: grid;
+    gap: 10px;
+  }
+  .decision-item {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .decision-item .d-num {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    background: var(--ink);
+    color: #faf7f2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 900;
+  }
+  .decision-item .d-text {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  .decision-item .d-text strong {
+    color: var(--accent);
+  }
+
+  /* Actions */
+  .actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .action-item {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .action-item .a-who {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .action-item .a-what {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  /* Quote */
+  .quote-box {
+    background: var(--surface-alt);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 28px 0;
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.8;
+    color: var(--ink);
+  }
+  .quote-box .q-author {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-light);
+    margin-top: 40px;
+  }
+  .footer .org {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+  }
+  .footer .meta {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Responsive */
+  @media (max-width: 680px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .division-grid { grid-template-columns: 1fr; }
+    .actions-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="badge">MEETING MINUTES</div>
+    <h1>各部会代表者ミーティング</h1>
+    <div class="sub">守成クラブ宮崎 ── 2026年2月2日（月）20:57〜23:35 ── 約2時間37分</div>
+  </div>
+
+  <!-- ATTENDEES -->
+  <div class="attendees">
+    <span class="person highlight">緒方総隆（代表）</span>
+    <span class="person highlight">坂口桜子（事務局）</span>
+    <span class="person">寺山大夢</span>
+    <span class="person">岩切葵</span>
+    <span class="person">髙橋沙斗志</span>
+    <span class="person">秋丸康予</span>
+    <span class="person">児玉由美子</span>
+    <span class="person">長田のり子</span>
+    <span class="person">有田洋絵</span>
+    <span class="person">花吉秀介</span>
+    <span class="person">新里将次郎</span>
+    <span class="person">川越拓実</span>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="num">12</div>
+      <div class="label">部会数</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">306</div>
+      <div class="label">現会員数</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" style="color: var(--green);">160</div>
+      <div class="label">前回例会参加</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" style="color: var(--gold);">12</div>
+      <div class="label">ネクストアクション</div>
+    </div>
+  </div>
+
+  <!-- TARGET -->
+  <div class="target-box">
+    <div class="target-num">400</div>
+    <div class="target-label">名 ── 今期目標会員数</div>
+    <div class="target-note">達成後に会場分割（新会場設立）を予定。分割しても運営が成り立つ規模が400名。<br>新規獲得より、巡回員180名が1人ずつ紹介する方が圧倒的に伸びる。</div>
+  </div>
+
+  <!-- DIVISION REPORTS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon" style="background: var(--orange-soft); color: var(--orange);">📋</div>
+      <h2>各部会レポート</h2>
+    </div>
+    <div class="division-grid">
+
+      <div class="div-card red">
+        <div class="div-name">🎫 受付部会</div>
+        <div class="div-lead">児玉由美子</div>
+        <ul>
+          <li><span class="tag tag-decision">決定</span> リボン → 服に直接つけるタイプへ変更</li>
+          <li><span class="tag tag-decision">決定</span> バッジ対応情報はTM側で取りに行く</li>
+          <li>Lark一本化で従来のゴタつき解消へ</li>
+        </ul>
+      </div>
+
+      <div class="div-card blue">
+        <div class="div-name">🎤 司会部会</div>
+        <div class="div-lead">長田のり子</div>
+        <ul>
+          <li><span class="tag tag-decision">決定</span> TM会議中でもアナウンスOK</li>
+          <li><span class="tag tag-decision">決定</span> 出発進行後の流れは従来通り</li>
+          <li><span class="tag tag-decision">決定</span> 音響担当の部会参加OK</li>
+        </ul>
+      </div>
+
+      <div class="div-card orange">
+        <div class="div-name">🏪 ブース出展部会</div>
+        <div class="div-lead">有田洋絵</div>
+        <ul>
+          <li><span class="tag tag-decision">決定</span> ワンコインは従来通り1枠1人500円</li>
+          <li><span class="tag tag-test">実験</span> 2月: 寺山氏がブース紹介MCを実施</li>
+          <li>出展者がアピールしたければ自分で枠購入</li>
+        </ul>
+      </div>
+
+      <div class="div-card green">
+        <div class="div-name">👥 2部会・3部会</div>
+        <div class="div-lead">髙橋沙斗志</div>
+        <ul>
+          <li><span class="tag tag-decision">決定</span> 10名体制確立（主4＋サブ6）</li>
+          <li>募集枠70名 / 2月は武井「晴れ町」80名</li>
+          <li><span class="tag tag-test">実験</span> 5月から完全2会場運用</li>
+          <li>他会場アテンド担当制 → 世話人会で協議</li>
+        </ul>
+      </div>
+
+      <div class="div-card purple">
+        <div class="div-name">🪑 テーブルマスター部会</div>
+        <div class="div-lead">花吉秀介</div>
+        <ul>
+          <li>勉強会日程を毎週LINEで周知</li>
+          <li>部会活用でTM新規開拓（草の根声かけ）</li>
+          <li><span class="tag tag-test">計画</span> YouTube非公開チャンネルで教育動画</li>
+          <li>当日ミーティングの質向上・ロープレ導入</li>
+        </ul>
+      </div>
+
+      <div class="div-card gold">
+        <div class="div-name">📻 ラジオ担当</div>
+        <div class="div-lead">長田のり子（代理）</div>
+        <ul>
+          <li><span class="tag tag-issue">課題</span> 未開催 → 早急に部会招集を</li>
+          <li>来期に向けて機能停止を回避すること</li>
+        </ul>
+      </div>
+
+      <div class="div-card wide teal">
+        <div class="div-name">⚙️ Lステップ＆Lark部会</div>
+        <div class="div-lead">寺山大夢 / 坂口桜子</div>
+        <ul>
+          <li><span class="tag tag-decision">決定</span> <strong>2月からスプシ不要・Lark一本化で運用</strong></li>
+          <li>申し込みフローを時系列で可視化 → マニュアルとしてLarkに掲載</li>
+          <li>担当制を導入（フォーム作成: 髙八重 / CSV: 岩切 / 配信: 長智子）</li>
+          <li>申込者の自動通知機能を構築中（ゲスト・他会場登録時）</li>
+        </ul>
+      </div>
+
+      <div class="div-card red">
+        <div class="div-name">🍻 青年部</div>
+        <div class="div-lead">新里将次郎</div>
+        <ul>
+          <li>3/4 懇親会予定（場所投票中）</li>
+          <li><span class="tag tag-issue">指摘</span> 日程は4役に事前確認すること</li>
+          <li><span class="tag tag-issue">指摘</span> 少人数化せず盛り上がりを維持</li>
+        </ul>
+      </div>
+
+      <div class="div-card blue">
+        <div class="div-name">🍷 ミドル＆ミニ会</div>
+        <div class="div-lead">秋丸康予</div>
+        <ul>
+          <li>3/10 片岡氏の店で開催（4,000円コース）</li>
+          <li><span class="tag tag-issue">注意</span> 巡回員の店は1回まで</li>
+        </ul>
+      </div>
+
+      <div class="div-card green">
+        <div class="div-name">🌱 緑会</div>
+        <div class="div-lead">児玉由美子</div>
+        <ul>
+          <li>1/28 開催済み / 次回3月予定</li>
+          <li>引き継ぎ: 日渡氏に依頼中（説得進行中）</li>
+        </ul>
+      </div>
+
+      <div class="div-card wide purple">
+        <div class="div-name">🛡️ フォロー部会</div>
+        <div class="div-lead">岩切葵 / 秋丸康予 / 寺山大夢</div>
+        <ul>
+          <li><span class="tag tag-decision">決定</span> Lark一元化のフォローシステム稼働開始</li>
+          <li>後期（3ヶ月前更新者）は全員フォロー / 中期（6ヶ月前）は売上10万以下 or 参加4回未満を抽出</li>
+          <li>対象者ごとに3名チーム → Larkで自動グループ作成 → フォロー→報告</li>
+          <li>初月は2〜4月更新者 約70名を一括対応（通常の3倍）</li>
+          <li><span class="tag tag-issue">課題</span> 中期フォローに危険度ランク（ABC判定）の導入を検討</li>
+          <li><span class="tag tag-issue">課題</span> 緑207名→赤35名の構成比改善が長期目標</li>
+        </ul>
+      </div>
+
+      <div class="div-card orange">
+        <div class="div-name">⛳ ゴルフ部</div>
+        <div class="div-lead">川越拓実（新任）</div>
+        <ul>
+          <li><span class="tag tag-issue">課題</span> 67名登録で回答9名 → 根本的なやり方見直し</li>
+          <li><span class="tag tag-hold">中止</span> 3月頭のコンペは中止 → 3月末以降で再調整</li>
+          <li><span class="tag tag-test">計画</span> 初心者向け打ちっぱなし練習会の開催</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-box">
+    「俺ら世話人が3人連れてこようとかって大変。会員さんに頑張ってもらう──<br>
+    それを仕掛けるのが俺たちの仕事。巡回員180人が1人ずつ紹介する方が圧倒的に伸びる。」
+    <div class="q-author">── 緒方総隆（代表）</div>
+  </div>
+
+  <!-- KEY DECISIONS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon" style="background: var(--red-soft); color: var(--red);">✓</div>
+      <h2>重要決定事項</h2>
+    </div>
+    <div class="decisions-list">
+      <div class="decision-item">
+        <div class="d-num">1</div>
+        <div class="d-text"><strong>2月からLark一本化</strong>でスプレッドシート不使用の運用をテスト開始</div>
+      </div>
+      <div class="decision-item">
+        <div class="d-num">2</div>
+        <div class="d-text"><strong>3月はゲスト1,000円</strong>で参加可能に（2月例会で発表。それまでオフレコ）</div>
+      </div>
+      <div class="decision-item">
+        <div class="d-num">3</div>
+        <div class="d-text"><strong>4月周年は他会場会員3,000円</strong>で参加可能。規模は200名未満を想定</div>
+      </div>
+      <div class="decision-item">
+        <div class="d-num">4</div>
+        <div class="d-text">代表者会議の<strong>決定事項は最終決定</strong>（世話人会での再承認は不要）</div>
+      </div>
+      <div class="decision-item">
+        <div class="d-num">5</div>
+        <div class="d-text">ワンコインアピールは<strong>従来通り</strong>。ブース紹介MCを2月にテスト実施</div>
+      </div>
+      <div class="decision-item">
+        <div class="d-num">6</div>
+        <div class="d-text">フォロー部の<strong>Larkベースフォローシステム</strong>が本格稼働開始</div>
+      </div>
+      <div class="decision-item">
+        <div class="d-num">7</div>
+        <div class="d-text">遅刻者罰金制度は<strong>保留</strong>（400名達成まで質より量を優先）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT ACTIONS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="icon" style="background: var(--blue-soft); color: var(--blue);">→</div>
+      <h2>ネクストアクション</h2>
+    </div>
+    <div class="actions-grid">
+      <div class="action-item">
+        <div class="a-who">寺山</div>
+        <div class="a-what">2月Lark一本化テスト運用・ゲストフォーム完成</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">寺山</div>
+        <div class="a-what">2月例会でブース紹介MC実施</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">岩切</div>
+        <div class="a-what">フォロー対象者ピックアップ＆チーム割り振り</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">寺山・岩切</div>
+        <div class="a-what">フォロー操作の説明動画 or 説明会</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">髙橋</div>
+        <div class="a-what">2部会の他会場アテンド担当制を検討</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">花吉・岩切</div>
+        <div class="a-what">TM受講者リスト共有・世話人必須受講の周知</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">長田</div>
+        <div class="a-what">ラジオ部会メンバー招集・協議開始</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">川越・岩倉</div>
+        <div class="a-what">ゴルフ部の活性化策検討・練習会企画</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">坂口</div>
+        <div class="a-what">実行委員の世話人志望確認（赤バッジ必須）</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">児玉</div>
+        <div class="a-what">名札リボン新タイプの発注</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">中平風・寺山</div>
+        <div class="a-what">式次第ホチキス位置・業種漏れの是正</div>
+      </div>
+      <div class="action-item">
+        <div class="a-who">全世話人</div>
+        <div class="a-what">例会での全力拍手・壇上一礼の率先実行</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="org">守成クラブ宮崎</div>
+    <div class="meta">各部会代表者ミーティング 議事録 | 2026.02.02 | 文字起こしデータより自動生成</div>
+  </div>
+
+</div>
+</body>
+</html>

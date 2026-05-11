@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宍倉 健浩　2026年5月11日</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            background: #f0f4f8;
+            color: #1a202c;
+            line-height: 1.65;
+        }
+
+        /* ══ HEADER ══ */
+        .ig-header {
+            background: linear-gradient(140deg, #0f1c35 0%, #0f3460 60%, #1a4a8a 100%);
+            color: #fff;
+        }
+        .ig-header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 52px 48px 40px;
+        }
+        .ig-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(249,115,22,0.9);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .ig-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 18px;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .ig-overview {
+            font-size: 1rem;
+            color: #a8c4e0;
+            line-height: 1.75;
+            max-width: 680px;
+            margin-bottom: 28px;
+        }
+        .ig-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .meta-date {
+            font-size: 0.82rem;
+            color: #7098bf;
+            font-weight: 600;
+        }
+        .person-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .person-chip {
+            background: rgba(255,255,255,0.12);
+            color: #d0e4f7;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* ══ STATS BAND ══ */
+        .stats-band {
+            display: flex;
+            align-items: stretch;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .stat-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px;
+            gap: 3px;
+        }
+        .stat-icon { font-size: 1.2rem; }
+        .stat-num {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #38bdf8;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.68rem;
+            color: #7098bf;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+        .stat-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.08);
+            align-self: stretch;
+            margin: 12px 0;
+        }
+
+        /* ══ SECTION LAYOUT ══ */
+        .ig-section {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 48px;
+        }
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .section-icon {
+            font-size: 1.4rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+        .section-heading {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.01em;
+        }
+        .section-content { }
+
+        /* ══ TOPIC CARDS ══ */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .topic-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            overflow: hidden;
+            border: 1px solid #e8edf2;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .topic-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .topic-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px 12px;
+            background: color-mix(in srgb, var(--accent) 8%, #fff);
+            border-bottom: 2px solid color-mix(in srgb, var(--accent) 20%, transparent);
+        }
+        .topic-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .topic-card-title {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.4;
+        }
+        .topic-bullets {
+            list-style: none;
+            padding: 14px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .topic-bullets li {
+            font-size: 0.85rem;
+            color: #374151;
+            line-height: 1.6;
+            padding-left: 14px;
+            position: relative;
+        }
+        .topic-bullets li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* ══ MEMO LIST ══ */
+        .memo-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .memo-list li {
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px 16px 12px 18px;
+            font-size: 0.9rem;
+            color: #374151;
+            line-height: 1.65;
+            border-left: 4px solid #cbd5e1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* ══ DECISIONS ══ */
+        .decision-section .section-icon { background: #f0fdf4; }
+        .decision-section .section-heading { color: #065f46; }
+        .decision-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .decision-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            border: 1px solid #d1fae5;
+        }
+        .decision-num-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .decision-text {
+            font-size: 0.92rem;
+            color: #064e3b;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        /* ══ ACTIONS ══ */
+        .action-section .section-icon { background: #fff7ed; }
+        .action-section .section-heading { color: #9a3412; }
+        .action-table {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #fed7aa;
+        }
+        .action-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 160px;
+            gap: 0;
+            background: #fff;
+            border-bottom: 1px solid #fed7aa;
+        }
+        .action-row:last-child { border-bottom: none; }
+        .action-row:nth-child(even) { background: #fffbf7; }
+        .action-person {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 16px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #9a3412;
+            border-right: 1px solid #fed7aa;
+        }
+        .person-icon { font-size: 0.9rem; }
+        .action-task {
+            padding: 14px 16px;
+            font-size: 0.88rem;
+            color: #1a202c;
+            line-height: 1.6;
+            border-right: 1px solid #fed7aa;
+        }
+        .action-deadline {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 16px;
+            font-size: 0.8rem;
+            color: #b45309;
+            font-weight: 600;
+        }
+        .deadline-icon { font-size: 0.85rem; }
+
+        /* ══ NUMBER HIGHLIGHT ══ */
+        em.num {
+            font-style: normal;
+            font-weight: 700;
+            color: #0369a1;
+            background: #e0f2fe;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* ══ FOOTER ══ */
+        .ig-footer {
+            text-align: center;
+            padding: 48px 24px;
+            color: #94a3b8;
+            font-size: 0.78rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media (max-width: 640px) {
+            .ig-header-inner { padding: 36px 24px 28px; }
+            .ig-title { font-size: 1.7rem; }
+            .ig-section { padding: 0 20px; margin: 28px auto; }
+            .card-grid { grid-template-columns: 1fr; }
+            .action-row { grid-template-columns: 1fr; }
+            .action-person, .action-task, .action-deadline {
+                border-right: none;
+                border-bottom: 1px solid #fed7aa;
+                padding: 10px 16px;
+            }
+            .action-deadline { border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="ig-header">
+        <div class="ig-header-inner">
+            <div class="ig-badge">📄 議事録</div>
+            <h1 class="ig-title">宍倉 健浩　2026年5月11日</h1>
+            <p class="ig-overview">Lark講座受講生向け会員アプリの要件定義・UI設計すり合わせを実施。</p>
+            <div class="ig-meta">
+                <span class="meta-date">🗓 2026年5月11日</span>
+                <div class="person-chips"><span class="person-chip">寺山 大夢（Lark研究所）</span><span class="person-chip">宍倉 健浩</span></div>
+            </div>
+        </div>
+        
+    <div class="stats-band">
+        <div class="stat-box">
+            <div class="stat-icon">📋</div>
+            <div class="stat-num">8</div>
+            <div class="stat-label">議題</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+            <div class="stat-icon">✅</div>
+            <div class="stat-num">6</div>
+            <div class="stat-label">決定事項</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-num">6</div>
+            <div class="stat-label">アクション</div>
+        </div>
+    </div>
+    </div>
+    <div class="ig-body">
+        
+        <section class="ig-section">
+            <div class="section-label">
+                <span class="section-icon">📋</span>
+                <h2 class="section-heading">主な議題と内容</h2>
+            </div>
+            <div class="section-content"><div class="card-grid">
+        <div class="topic-card" style="--accent:#6366f1">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#6366f1"></span>
+                <span class="topic-card-title">事前準備の確認</span>
+            </div>
+            <ul class="topic-bullets"><li>Lark App ID/Secret、Anthropic API、Vercel、Cloudflare等はほぼ取得済み</li><li>Wrangler CLIは未確認</li><li>アプリUIは既存ベースではなく新規作成で進める</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#0ea5e9">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#0ea5e9"></span>
+                <span class="topic-card-title">UI/UX方針</span>
+            </div>
+            <ul class="topic-bullets"><li>PC専用（スマホ最適化なし）で設計</li><li>左側にメニュー、中央にメインコンテンツの構成</li><li>カラー：白背景＋ネイビー＋Lark講座グリーン</li><li>フォント：明朝体を希望</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#10b981">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#10b981"></span>
+                <span class="topic-card-title">決済・アカウント管理機能</span>
+            </div>
+            <ul class="topic-bullets"><li>アカウント付与日から<em class="num">180日</em>間は無料</li><li><em class="num">181日</em>目から月<em class="num">1万</em><em class="num">1千</em>円の自動課金開始</li><li>決済はUnivaPayを使用（現在宴と連携済み）</li><li>Stripeではなく最初から<em class="num">0円</em>登録→<em class="num">180日</em>後に自動課金に切り替える方針</li><li>未決済ユーザーはログイン不可となる設計（Supabase連携想定）</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#f59e0b">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#f59e0b"></span>
+                <span class="topic-card-title">アプリの主要機能設計</span>
+            </div>
+            <ul class="topic-bullets"><li>初回ロードマップ生成：ログイン後に複数質問へ回答→個別最適化ロードマップ自動生成</li><li>ホームダッシュボード：今日やるべきタスク表示、チェック式進捗管理、期限管理</li><li>AIチャットボット：<em class="num">4</em>種類のボット（棚卸し君・設計君・事例君等）をタブ切り替えで利用</li><li>ナレッジ保管庫：事例・テンプレ・講座録画をカテゴリー検索→Lark内コンテンツへリンク</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#ec4899">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#ec4899"></span>
+                <span class="topic-card-title">ロードマップ生成方式の検討</span>
+            </div>
+            <ul class="topic-bullets"><li>方式①：カテゴリー別テンプレ＋微修正（簡易）</li><li>方式②：詳細な質問設計→回答内容でテンプレを微修正生成（採用決定）</li><li>方式③：蓄積データからAI学習→完全自動生成（精度不足のため将来課題）</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#8b5cf6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#8b5cf6"></span>
+                <span class="topic-card-title">講座設計の変更点（旧構成からの変更）</span>
+            </div>
+            <ul class="topic-bullets"><li>自社活用コースと仕事化コースを統合し<em class="num">1</em>講座に一本化</li><li>松竹梅プランは廃止、VIPプラン（マンツーマン顧問制）を別途設置</li><li>日中勉強会から夜間開催にシフト</li><li>受講生の自走化を強化し、寺山への質問はアウトプット提出ベースへ移行</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#14b8a6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#14b8a6"></span>
+                <span class="topic-card-title">AIコストとデータ管理</span>
+            </div>
+            <ul class="topic-bullets"><li>APIコストが発生するのはロードマップ生成とAIボットの<em class="num">2</em>箇所のみ</li><li>Larkデータベースは<em class="num">2万</em>行まで無料（<em class="num">2万</em>行超過後は<em class="num">100万</em>行プランあり）</li><li>VercelとCloudflareは無料枠内で運用予定</li><li>Vercel：動的処理（AI連携）担当、Cloudflare：画面表示担当</li><li>ログは完全保存ではなく完成物・要約のみ保存を検討</li></ul>
+        </div></div></div>
+        </section>
+        <section class="ig-section">
+            <div class="section-label">
+                <span class="section-icon">📝</span>
+                <h2 class="section-heading">その他メモ</h2>
+            </div>
+            <div class="section-content"><ul class="memo-list"><li>現在の受講生は約<em class="num">100名</em>規模を想定</li><li>既存のGPTs（棚卸し君・設計君・事例君等）をアプリ内に取り込む方針</li><li>Larkデータベースに既存の質問ナレッジ約<em class="num">50</em>〜<em class="num">60件</em>が蓄積済み（活用可能）</li><li>アウトプット提出→寺山がフィードバックする「発表会」形式は今後も継続（オンライン夜間へ移行）</li><li>月額システム代<em class="num">1万</em><em class="num">1千</em>円はAPI費用含む全負担を寺山側が持つ設計</li></ul></div>
+        </section>
+        <section class="ig-section decision-section">
+            <div class="section-label">
+                <span class="section-icon">✅</span>
+                <h2 class="section-heading">決定事項</h2>
+            </div>
+            <div class="section-content"><div class="decision-rows">
+        <div class="decision-row">
+            <span class="decision-num-badge">1</span>
+            <span class="decision-text">アプリはPC専用・新規UIで開発</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">2</span>
+            <span class="decision-text">決済はUnivaPayで<em class="num">180日</em>無料→月<em class="num">1万</em><em class="num">1千</em>円の自動課金設計</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">3</span>
+            <span class="decision-text">ロードマップ生成は方式②（詳細質問→個別生成）を採用</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">4</span>
+            <span class="decision-text">アプリ構成：ホーム・AIボット（<em class="num">4</em>種）・ナレッジ保管庫の<em class="num">3</em>タブ構成</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">5</span>
+            <span class="decision-text">講座を<em class="num">1</em>コースに統合、夜間勉強会へ移行</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">6</span>
+            <span class="decision-text">本日のUI画像をChatGPT（o<em class="num">3</em>/Codex）で生成→次回木曜日に最終すり合わせ</span>
+        </div></div></div>
+        </section>
+        <section class="ig-section action-section">
+            <div class="section-label">
+                <span class="section-icon">⚡</span>
+                <h2 class="section-heading">ネクストアクション</h2>
+            </div>
+            <div class="section-content"><div class="action-table">
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>宍倉</span>
+            </div>
+            <div class="action-task">UI画像生成（全画面分：ログイン・ロードマップ生成・ダッシュボード・AIボット・ナレッジ保管庫）</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>木曜日前まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>宍倉</span>
+            </div>
+            <div class="action-task">事前準備リストを更新・手順書化してLarkチャットで送付</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>木曜日前まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>宍倉</span>
+            </div>
+            <div class="action-task">UnivaPayとStripe/決済連携の可否確認</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>木曜日前まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">事前準備リストに沿って進められる箇所を進める（Wrangler CLI等）</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>木曜日まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">ロードマップ生成用の質問設計・<em class="num">5</em>カテゴリーのタスク細分化を整理</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>木曜日まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>両者</span>
+            </div>
+            <div class="action-task">木曜日に最終すり合わせ・アプリ完成</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>木曜日</span>
+            </div>
+        </div></div></div>
+        </section>
+    </div>
+    <div class="ig-footer">株式会社Entime / 寺山 大夢</div>
+</body>
+</html>

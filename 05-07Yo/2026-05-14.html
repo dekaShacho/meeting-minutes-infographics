@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05-07 | Yo　2026年5月14日</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            background: #f0f4f8;
+            color: #1a202c;
+            line-height: 1.65;
+        }
+
+        /* ══ HEADER ══ */
+        .ig-header {
+            background: linear-gradient(140deg, #0f1c35 0%, #0f3460 60%, #1a4a8a 100%);
+            color: #fff;
+        }
+        .ig-header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 52px 48px 40px;
+        }
+        .ig-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(249,115,22,0.9);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .ig-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 18px;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .ig-overview {
+            font-size: 1rem;
+            color: #a8c4e0;
+            line-height: 1.75;
+            max-width: 680px;
+            margin-bottom: 28px;
+        }
+        .ig-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .meta-date {
+            font-size: 0.82rem;
+            color: #7098bf;
+            font-weight: 600;
+        }
+        .person-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .person-chip {
+            background: rgba(255,255,255,0.12);
+            color: #d0e4f7;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* ══ STATS BAND ══ */
+        .stats-band {
+            display: flex;
+            align-items: stretch;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .stat-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px;
+            gap: 3px;
+        }
+        .stat-icon { font-size: 1.2rem; }
+        .stat-num {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #38bdf8;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.68rem;
+            color: #7098bf;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+        .stat-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.08);
+            align-self: stretch;
+            margin: 12px 0;
+        }
+
+        /* ══ SECTION LAYOUT ══ */
+        .ig-section {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 48px;
+        }
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .section-icon {
+            font-size: 1.4rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+        .section-heading {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.01em;
+        }
+        .section-content { }
+
+        /* ══ TOPIC CARDS ══ */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .topic-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            overflow: hidden;
+            border: 1px solid #e8edf2;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .topic-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .topic-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px 12px;
+            background: color-mix(in srgb, var(--accent) 8%, #fff);
+            border-bottom: 2px solid color-mix(in srgb, var(--accent) 20%, transparent);
+        }
+        .topic-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .topic-card-title {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.4;
+        }
+        .topic-bullets {
+            list-style: none;
+            padding: 14px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .topic-bullets li {
+            font-size: 0.85rem;
+            color: #374151;
+            line-height: 1.6;
+            padding-left: 14px;
+            position: relative;
+        }
+        .topic-bullets li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* ══ MEMO LIST ══ */
+        .memo-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .memo-list li {
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px 16px 12px 18px;
+            font-size: 0.9rem;
+            color: #374151;
+            line-height: 1.65;
+            border-left: 4px solid #cbd5e1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* ══ DECISIONS ══ */
+        .decision-section .section-icon { background: #f0fdf4; }
+        .decision-section .section-heading { color: #065f46; }
+        .decision-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .decision-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            border: 1px solid #d1fae5;
+        }
+        .decision-num-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .decision-text {
+            font-size: 0.92rem;
+            color: #064e3b;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        /* ══ ACTIONS ══ */
+        .action-section .section-icon { background: #fff7ed; }
+        .action-section .section-heading { color: #9a3412; }
+        .action-table {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #fed7aa;
+        }
+        .action-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 160px;
+            gap: 0;
+            background: #fff;
+            border-bottom: 1px solid #fed7aa;
+        }
+        .action-row:last-child { border-bottom: none; }
+        .action-row:nth-child(even) { background: #fffbf7; }
+        .action-person {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 16px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #9a3412;
+            border-right: 1px solid #fed7aa;
+        }
+        .person-icon { font-size: 0.9rem; }
+        .action-task {
+            padding: 14px 16px;
+            font-size: 0.88rem;
+            color: #1a202c;
+            line-height: 1.6;
+            border-right: 1px solid #fed7aa;
+        }
+        .action-deadline {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 16px;
+            font-size: 0.8rem;
+            color: #b45309;
+            font-weight: 600;
+        }
+        .deadline-icon { font-size: 0.85rem; }
+
+        /* ══ NUMBER HIGHLIGHT ══ */
+        em.num {
+            font-style: normal;
+            font-weight: 700;
+            color: #0369a1;
+            background: #e0f2fe;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* ══ FOOTER ══ */
+        .ig-footer {
+            text-align: center;
+            padding: 48px 24px;
+            color: #94a3b8;
+            font-size: 0.78rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media (max-width: 640px) {
+            .ig-header-inner { padding: 36px 24px 28px; }
+            .ig-title { font-size: 1.7rem; }
+            .ig-section { padding: 0 20px; margin: 28px auto; }
+            .card-grid { grid-template-columns: 1fr; }
+            .action-row { grid-template-columns: 1fr; }
+            .action-person, .action-task, .action-deadline {
+                border-right: none;
+                border-bottom: 1px solid #fed7aa;
+                padding: 10px 16px;
+            }
+            .action-deadline { border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="ig-header">
+        <div class="ig-header-inner">
+            <div class="ig-badge">📄 議事録</div>
+            <h1 class="ig-title">05-07 | Yo　2026年5月14日</h1>
+            <p class="ig-overview">Lark講座のプラン・料金体系の再設計と、YouTube突撃取材企画の立案・撮影スケジュール調整を行った。</p>
+            <div class="ig-meta">
+                <span class="meta-date">🗓 2026年5月14日</span>
+                <div class="person-chips"><span class="person-chip">寺山 大夢（Lark研究所）</span><span class="person-chip">齋藤 巧</span></div>
+            </div>
+        </div>
+        
+    <div class="stats-band">
+        <div class="stat-box">
+            <div class="stat-icon">📋</div>
+            <div class="stat-num">8</div>
+            <div class="stat-label">議題</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+            <div class="stat-icon">✅</div>
+            <div class="stat-num">8</div>
+            <div class="stat-label">決定事項</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-num">9</div>
+            <div class="stat-label">アクション</div>
+        </div>
+    </div>
+    </div>
+    <div class="ig-body">
+        
+        <section class="ig-section">
+            <div class="section-label">
+                <span class="section-icon">📋</span>
+                <h2 class="section-heading">主な議題と内容</h2>
+            </div>
+            <div class="section-content"><div class="card-grid">
+        <div class="topic-card" style="--accent:#6366f1">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#6366f1"></span>
+                <span class="topic-card-title">Larkシステム不具合の確認</span>
+            </div>
+            <ul class="topic-bullets"><li>山田商事から鈴木さんへのチャット通知が真っ黒で表示されない不具合</li><li>原因：画面共有の対象外ページだった可能性が高い（バグではない）</li><li><em class="num">465万</em>円の受注通知を「特典自動化通知」で確認・スクショをチャットで共有</li><li>動画撮影不要、スクショのみで対応完了</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#0ea5e9">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#0ea5e9"></span>
+                <span class="topic-card-title">銀行振込24分割の顧客対応（佐藤陽一氏）</span>
+            </div>
+            <ul class="topic-bullets"><li>社労士・自己破産歴あり、クレカ利用不可（ブラックリスト）</li><li>一括着金の余裕なし、月<em class="num">3万</em>弱での分割希望</li><li>銀振一括<em class="num">55万</em>円、クレカ一括（税込）約<em class="num">60万</em>円</li><li>齋藤氏の対応順：①銀振一括→②一部銀振＋残額クレカ分割→③完全分割</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#10b981">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#10b981"></span>
+                <span class="topic-card-title">決済フローの整理</span>
+            </div>
+            <ul class="topic-bullets"><li>ユニバペイ使用中、金額はクレカ・銀振で統一（差額なし）</li><li>齋藤・中島両氏で「決済優先度パターン表」を寺山氏向けに作成予定</li><li>クレカ手数料込みで価格設計する方針（銀振はラッキー扱い）</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#f59e0b">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#f59e0b"></span>
+                <span class="topic-card-title">Lark講座プラン・料金体系の見直し</span>
+            </div>
+            <ul class="topic-bullets"><li>現状：スタート・スタンダード・エキスパート・コンサルタントの多段階構成</li><li>齋藤氏提案：シンプルに<em class="num">2</em>プランへ集約</li><li>標準プラン：<em class="num">498,000円</em>（Lark全機能・自社改善＋仕事化まで学べる）</li><li>VIPプラン：<em class="num">100万</em>円程度（週<em class="num">1個</em>別ミーティング付き）</li><li>寺山氏案の<em class="num">198,000円</em>低単価プランは不要と結論（競合少・実績で差別化可能）</li><li>講師複数名の体制は廃止、寺山氏がフロント全対応</li><li>翔馬氏（エンジニア）はスポット登壇のみ</li><li>勉強会は夜開催・アーカイブ保存、動画コンテンツで全カリキュラムが自己完結する設計</li><li>月<em class="num">1回</em>オフ会（東京・大阪）をお猿さん方式で実施</li><li>チャット質問への返答は全て寺山氏が手動対応（AI化しない）</li><li>頻出質問は動画コンテンツに落とし込んで質問自体を減らす</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#ec4899">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#ec4899"></span>
+                <span class="topic-card-title">YouTube企画①：経費管理コンテンツ</span>
+            </div>
+            <ul class="topic-bullets"><li>ターゲット：フリー・マネーフォワード未使用で確定申告時だけ手入力する層</li><li>Lark単体OCRは名刺・請求書の<em class="num">2</em>種のみ対応、精度未検証</li><li>Claude Code活用で写真→数値読み取り自動化が実現可能</li><li>詳細企画を翌週（来週）までに齋藤氏が提案</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#8b5cf6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#8b5cf6"></span>
+                <span class="topic-card-title">YouTube企画②：Lark導入企業への突撃取材動画</span>
+            </div>
+            <ul class="topic-bullets"><li>Larkメインチャンネルに掲載、対談動画チャンネルとは別企画</li><li>ターゲット視聴者：フリーランス・一人経営者・小規模店舗オーナー</li><li>優先候補（宮崎）：合同会社はなな、新スタイル（SNS運用代行）、ドライヘッドスパ、支えるなど</li><li>突撃先で見せるLark活用内容：KPI管理、勤怠管理、顧客管理、粗利管理</li><li><em class="num">1日</em><em class="num">3件</em>・移動込み<em class="num">3時</em>間/件のスケジュール想定</li><li><em class="num">2日</em>間で最大<em class="num">6</em>〜<em class="num">7</em>本撮影可能</li><li>撮影体制：齋藤氏＋カメラマン（<em class="num">2人</em>体制）で撮影</li><li>カメラマン費用概算：<em class="num">1日</em>稼働約<em class="num">5万</em>円×<em class="num">2日</em>＝<em class="num">10万</em>円＋移動・宿泊費</li><li>東京の導入企業（ピラティス等）は寺山氏が東京訪問時に対応可能</li><li>助成金利用企業（規模大）は対談動画チャンネル向け素材として活用</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#14b8a6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#14b8a6"></span>
+                <span class="topic-card-title">YouTube分析ツール（Claude Code製）の共有</span>
+            </div>
+            <ul class="topic-bullets"><li>寺山氏のYouTubeを学習させ、DX・時短・効率化文脈の競合動画を自動収集</li><li>企画候補の自動提案機能も実装済み</li><li>流入元動画・視聴者属性の分析も今後可能な設計</li><li>テキストデータを齋藤氏に共有予定</li></ul>
+        </div></div></div>
+        </section>
+        <section class="ig-section">
+            <div class="section-label">
+                <span class="section-icon">📝</span>
+                <h2 class="section-heading">その他メモ</h2>
+            </div>
+            <div class="section-content"><ul class="memo-list"><li>お猿さん（参照モデル）のAI講座は約<em class="num">30万</em>円、大阪・東京で高頻度の勉強会を実施</li><li>建設業での活用例：<em class="num">3,000万</em>円案件で<em class="num">900万</em>円（<em class="num">30%</em>）利益確保を目標に、予算組み→実績チェックをLarkで管理</li><li>宮崎内の移動距離：近い先<em class="num">10分</em>〜遠い先<em class="num">1時</em>間半</li><li>メモリード（冠婚葬祭）は上場企業クラスの大手、助成金利用企業は対談チャンネル向けに有効</li><li>広告宣伝費の予算執行期限が<em class="num">5月</em>末（決算都合）のため、撮影は<em class="num">6月</em>初旬が現実的な最速</li></ul></div>
+        </section>
+        <section class="ig-section decision-section">
+            <div class="section-label">
+                <span class="section-icon">✅</span>
+                <h2 class="section-heading">決定事項</h2>
+            </div>
+            <div class="section-content"><div class="decision-rows">
+        <div class="decision-row">
+            <span class="decision-num-badge">1</span>
+            <span class="decision-text">Lark講座を<em class="num">2</em>プランに集約：<em class="num">498,000円</em>（標準）／約<em class="num">100万</em>円（VIP）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">2</span>
+            <span class="decision-text">低単価プラン（<em class="num">198,000円</em>）は設けない</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">3</span>
+            <span class="decision-text">複数講師体制を廃止、寺山氏がフロント全担当</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">4</span>
+            <span class="decision-text">チャット質問は寺山氏が全て手動返答（AI化しない）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">5</span>
+            <span class="decision-text">勉強会は夜開催、動画コンテンツで全カリキュラム自己完結を前提とする</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">6</span>
+            <span class="decision-text">月<em class="num">1回</em>オフ会（東京・大阪）を実施</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">7</span>
+            <span class="decision-text">YouTube突撃取材企画を<em class="num">6月</em><em class="num">3</em>〜<em class="num">4日</em>に実施（<em class="num">2日</em>間・宮崎）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">8</span>
+            <span class="decision-text">決済優先度パターン表を齋藤・中島氏が作成して寺山氏に提供</span>
+        </div></div></div>
+        </section>
+        <section class="ig-section action-section">
+            <div class="section-label">
+                <span class="section-icon">⚡</span>
+                <h2 class="section-heading">ネクストアクション</h2>
+            </div>
+            <div class="section-content"><div class="action-table">
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>齋藤 巧</span>
+            </div>
+            <div class="action-task">経費管理YouTube企画の詳細案を提案</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>来週まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>齋藤 巧</span>
+            </div>
+            <div class="action-task">カメラマンに<em class="num">6月</em><em class="num">3</em>〜<em class="num">4日</em>のスケジュール・予算を確認</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>今日中</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>齋藤 巧</span>
+            </div>
+            <div class="action-task"><em class="num">6月</em><em class="num">3</em>〜<em class="num">4日</em>の航空券（羽田or成田→宮崎）を手配・確認</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>今日中</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>齋藤 巧</span>
+            </div>
+            <div class="action-task">突撃取材企画書を微調整して再提出</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急に</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>齋藤 巧・中島氏</span>
+            </div>
+            <div class="action-task">決済優先度パターン表を作成し寺山氏へ提供</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急に</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山 大夢</span>
+            </div>
+            <div class="action-task">突撃取材候補先（宮崎<em class="num">5</em>社程度）へ<em class="num">6月</em><em class="num">3</em>〜<em class="num">4日</em>の撮影打診</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急に</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山 大夢</span>
+            </div>
+            <div class="action-task">Claude Code製YouTube分析テキストを齋藤氏へ送付</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急に</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山 大夢</span>
+            </div>
+            <div class="action-task">講座プラン・提案資料を<em class="num">2</em>プラン構成にブラッシュアップ</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>次回まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山 大夢</span>
+            </div>
+            <div class="action-task">税理士に銀振<em class="num">24分</em>割契約の可否を確認</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急に</span>
+            </div>
+        </div></div></div>
+        </section>
+    </div>
+    <div class="ig-footer">株式会社Entime / 寺山 大夢</div>
+</body>
+</html>

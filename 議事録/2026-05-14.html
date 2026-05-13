@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>議事録　2026年5月14日</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            background: #f0f4f8;
+            color: #1a202c;
+            line-height: 1.65;
+        }
+
+        /* ══ HEADER ══ */
+        .ig-header {
+            background: linear-gradient(140deg, #0f1c35 0%, #0f3460 60%, #1a4a8a 100%);
+            color: #fff;
+        }
+        .ig-header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 52px 48px 40px;
+        }
+        .ig-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(249,115,22,0.9);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .ig-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 18px;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .ig-overview {
+            font-size: 1rem;
+            color: #a8c4e0;
+            line-height: 1.75;
+            max-width: 680px;
+            margin-bottom: 28px;
+        }
+        .ig-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .meta-date {
+            font-size: 0.82rem;
+            color: #7098bf;
+            font-weight: 600;
+        }
+        .person-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .person-chip {
+            background: rgba(255,255,255,0.12);
+            color: #d0e4f7;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* ══ STATS BAND ══ */
+        .stats-band {
+            display: flex;
+            align-items: stretch;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .stat-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px;
+            gap: 3px;
+        }
+        .stat-icon { font-size: 1.2rem; }
+        .stat-num {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #38bdf8;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.68rem;
+            color: #7098bf;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+        .stat-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.08);
+            align-self: stretch;
+            margin: 12px 0;
+        }
+
+        /* ══ SECTION LAYOUT ══ */
+        .ig-section {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 48px;
+        }
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .section-icon {
+            font-size: 1.4rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+        .section-heading {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.01em;
+        }
+        .section-content { }
+
+        /* ══ TOPIC CARDS ══ */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .topic-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            overflow: hidden;
+            border: 1px solid #e8edf2;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .topic-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .topic-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px 12px;
+            background: color-mix(in srgb, var(--accent) 8%, #fff);
+            border-bottom: 2px solid color-mix(in srgb, var(--accent) 20%, transparent);
+        }
+        .topic-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .topic-card-title {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.4;
+        }
+        .topic-bullets {
+            list-style: none;
+            padding: 14px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .topic-bullets li {
+            font-size: 0.85rem;
+            color: #374151;
+            line-height: 1.6;
+            padding-left: 14px;
+            position: relative;
+        }
+        .topic-bullets li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* ══ MEMO LIST ══ */
+        .memo-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .memo-list li {
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px 16px 12px 18px;
+            font-size: 0.9rem;
+            color: #374151;
+            line-height: 1.65;
+            border-left: 4px solid #cbd5e1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* ══ DECISIONS ══ */
+        .decision-section .section-icon { background: #f0fdf4; }
+        .decision-section .section-heading { color: #065f46; }
+        .decision-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .decision-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            border: 1px solid #d1fae5;
+        }
+        .decision-num-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .decision-text {
+            font-size: 0.92rem;
+            color: #064e3b;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        /* ══ ACTIONS ══ */
+        .action-section .section-icon { background: #fff7ed; }
+        .action-section .section-heading { color: #9a3412; }
+        .action-table {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #fed7aa;
+        }
+        .action-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 160px;
+            gap: 0;
+            background: #fff;
+            border-bottom: 1px solid #fed7aa;
+        }
+        .action-row:last-child { border-bottom: none; }
+        .action-row:nth-child(even) { background: #fffbf7; }
+        .action-person {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 16px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #9a3412;
+            border-right: 1px solid #fed7aa;
+        }
+        .person-icon { font-size: 0.9rem; }
+        .action-task {
+            padding: 14px 16px;
+            font-size: 0.88rem;
+            color: #1a202c;
+            line-height: 1.6;
+            border-right: 1px solid #fed7aa;
+        }
+        .action-deadline {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 16px;
+            font-size: 0.8rem;
+            color: #b45309;
+            font-weight: 600;
+        }
+        .deadline-icon { font-size: 0.85rem; }
+
+        /* ══ NUMBER HIGHLIGHT ══ */
+        em.num {
+            font-style: normal;
+            font-weight: 700;
+            color: #0369a1;
+            background: #e0f2fe;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* ══ FOOTER ══ */
+        .ig-footer {
+            text-align: center;
+            padding: 48px 24px;
+            color: #94a3b8;
+            font-size: 0.78rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media (max-width: 640px) {
+            .ig-header-inner { padding: 36px 24px 28px; }
+            .ig-title { font-size: 1.7rem; }
+            .ig-section { padding: 0 20px; margin: 28px auto; }
+            .card-grid { grid-template-columns: 1fr; }
+            .action-row { grid-template-columns: 1fr; }
+            .action-person, .action-task, .action-deadline {
+                border-right: none;
+                border-bottom: 1px solid #fed7aa;
+                padding: 10px 16px;
+            }
+            .action-deadline { border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="ig-header">
+        <div class="ig-header-inner">
+            <div class="ig-badge">📄 議事録</div>
+            <h1 class="ig-title">議事録　2026年5月14日</h1>
+            <p class="ig-overview">守成クラブ宮崎の世話人会において、例会運営改善・会員400名達成・Lark活用推進を継続的に審議・決定した会議群。</p>
+            <div class="ig-meta">
+                <span class="meta-date">🗓 2026年5月14日</span>
+                <div class="person-chips"><span class="person-chip">桑畑（代表</span><span class="person-chip">前代表）</span><span class="person-chip">緒方（事務局）</span><span class="person-chip">花吉</span><span class="person-chip">甲斐</span><span class="person-chip">川越</span><span class="person-chip">高橋</span><span class="person-chip">中野</span><span class="person-chip">黒原</span><span class="person-chip">秋丸</span><span class="person-chip">児玉</span><span class="person-chip">原口</span><span class="person-chip">福田</span><span class="person-chip">永吉</span><span class="person-chip">岩切</span><span class="person-chip">長</span><span class="person-chip">寺山</span><span class="person-chip">有田</span><span class="person-chip">中平</span><span class="person-chip">衣笠</span><span class="person-chip">坂口（事務局長）</span><span class="person-chip">岩田（副代表）</span><span class="person-chip">長田</span><span class="person-chip">下野</span><span class="person-chip">轟</span><span class="person-chip">新里</span><span class="person-chip">高八重</span><span class="person-chip">岡山</span><span class="person-chip">押川</span><span class="person-chip">飯村</span><span class="person-chip">樋渡</span><span class="person-chip">畑山</span><span class="person-chip">籾木</span><span class="person-chip">神谷</span><span class="person-chip">小村</span><span class="person-chip">岡崎</span><span class="person-chip">山崎（顧問）</span><span class="person-chip">中野（合同会社てげ）</span><span class="person-chip">中野（インパクトワークス）</span><span class="person-chip">その他会員多数</span></div>
+            </div>
+        </div>
+        
+    <div class="stats-band">
+        <div class="stat-box">
+            <div class="stat-icon">📋</div>
+            <div class="stat-num">21</div>
+            <div class="stat-label">議題</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+            <div class="stat-icon">✅</div>
+            <div class="stat-num">27</div>
+            <div class="stat-label">決定事項</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-num">29</div>
+            <div class="stat-label">アクション</div>
+        </div>
+    </div>
+    </div>
+    <div class="ig-body">
+        
+        <section class="ig-section">
+            <div class="section-label">
+                <span class="section-icon">📋</span>
+                <h2 class="section-heading">主な議題と内容</h2>
+            </div>
+            <div class="section-content"><div class="card-grid">
+        <div class="topic-card" style="--accent:#6366f1">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#6366f1"></span>
+                <span class="topic-card-title">会員数・組織状況</span>
+            </div>
+            <ul class="topic-bullets"><li>現会員数<em class="num">349名</em>（目標<em class="num">400名</em>、残り<em class="num">51名</em>）</li><li>全国<em class="num">307</em>会場中<em class="num">2</em>位の入会成績（先月）</li><li>月平均純増<em class="num">13名</em>（<em class="num">10月</em><em class="num">268名</em>→<em class="num">5月</em><em class="num">349名</em>、半年で+<em class="num">80名</em>）</li><li>先月入会<em class="num">17名</em>、最終<em class="num">35名</em>着地</li><li>昼会場立ち上げ方針決定（<em class="num">400名</em>達成と同時）</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#0ea5e9">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#0ea5e9"></span>
+                <span class="topic-card-title">収支報告（複数月）</span>
+            </div>
+            <ul class="topic-bullets"><li><em class="num">12月</em>：収入<em class="num">665,900円</em>／支出<em class="num">472,100円</em>／収益<em class="num">193,800円</em>／残高<em class="num">182万</em>円</li><li>翌月：収入<em class="num">654,600円</em>／支出<em class="num">529,800円</em>／余剰金<em class="num">124,800円</em>／残高<em class="num">220万</em>円</li><li>翌々月：収入<em class="num">603,900円</em>／支出<em class="num">525,300円</em>／余剰金<em class="num">119,600円</em></li><li><em class="num">9月</em>口座：収入<em class="num">522,400円</em>／支出<em class="num">657,321円</em>／収支−<em class="num">134,921円</em></li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#10b981">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#10b981"></span>
+                <span class="topic-card-title">フォロー委員会</span>
+            </div>
+            <ul class="topic-bullets"><li>中期（<em class="num">2月</em>更新）・後期（<em class="num">10月</em>更新）でグループ分け</li><li>年会費<em class="num">2万</em>円を売上基準として線引き</li><li>中期<em class="num">40%</em>・後期<em class="num">60%</em>参加率でグループ分け、低い人を優先フォロー</li><li>未入金者へのアプローチ担当を明確化</li><li>Larkでフォローデータを一元管理</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#f59e0b">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#f59e0b"></span>
+                <span class="topic-card-title">世話人会の運営改革（議題A-1）</span>
+            </div>
+            <ul class="topic-bullets"><li>報告事項は事前Lark共有、当日は決議に集中</li><li>世話人会<em class="num">2日</em>前に議案を議事録にアップ、各自事前確認必須</li><li>アンケート回答が議題となる仕組みを導入</li><li>タイムキーパーを設置、議題ごとに時間を区切る</li><li>有田さん提案採用：瓦版以外の報告は全て司会から</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#ec4899">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#ec4899"></span>
+                <span class="topic-card-title">名簿作成・資料準備（議題A-2/A-3）</span>
+            </div>
+            <ul class="topic-bullets"><li>締切厳格化：月曜締切、以後名簿に載らない旨を明記</li><li>漏れた分は別シートで管理</li><li>申込経路をLステップに統一する方向で検討中</li><li>資料作成責任者：中平（ラベル作成）</li><li>Lark完全移行でヒューマンエラーをゼロにする目標</li><li>受付は<em class="num">16時</em>に資料印刷完了を絶対条件とする</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#8b5cf6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#8b5cf6"></span>
+                <span class="topic-card-title">例会プログラム改善</span>
+            </div>
+            <ul class="topic-bullets"><li><em class="num">11月</em>より「<em class="num">3分</em>×<em class="num">2回</em>」正式導入（可決）</li><li><em class="num">10月</em>は従来通り</li><li>変更の会員への事前告知を実施</li><li><em class="num">2回</em>目の車座後に<em class="num">1分</em>以上のゆっくりタイムを設け、最後にテーブル番号を言う運用に確定</li><li>将来的に「<em class="num">2分</em>PR＋<em class="num">1分</em>質疑」への変更を議論中</li><li>ゲスト入場廃止、リボン徹底（都城方式）</li><li>ゲストのLark情報登録に変更（LINE登録不要）</li><li>ゲスト識別はフラワーレイ→名札を隠さない形状への変更検討</li><li>名札の紐を短くすることで対応</li><li>会場ごとにまとめてスクリーンに名前を出す</li><li>司会から会場ごとの紹介のみ</li><li>壇上紹介廃止→テーブル配布用紙での紹介に変更</li><li>出展内容はLステップで事前入力</li><li>本部NGルール確認：準会員の登壇・チラシ全体配布・ブース出展（<em class="num">8月</em>より）禁止</li><li>瓦版担当者以外の報告は司会が読み上げ</li><li>担当者は前に出て内容を短縮して話す</li><li>売上報告にグラフ導入（<em class="num">11月</em>から）</li><li>実績報告は出欠フォームに抱き合わせて回答必須</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#14b8a6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#14b8a6"></span>
+                <span class="topic-card-title">テーブルマスター（TM）制度</span>
+            </div>
+            <ul class="topic-bullets"><li><em class="num">9月</em><em class="num">20名</em>確保済み</li><li>TM勉強会<em class="num">10月</em>前半開催（会場：青少年プラザ、費用は会が負担）</li><li>TM紹介表はスクリーンに<em class="num">2人</em>で<em class="num">1枚</em>表示</li><li>研修内で車座も実施</li><li>定期的な勉強会継続（次回<em class="num">12月</em>予定）</li><li>TMが指名する形で話す順番を統一</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#f97316">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#f97316"></span>
+                <span class="topic-card-title">受付・会場設営</span>
+            </div>
+            <ul class="topic-bullets"><li>PC<em class="num">3台</em>購入済み</li><li>出欠確認手順：①Larkで担当の出欠確認→②未回答者に連絡→③スプシに反映→④「確認完了」押下</li><li>席札はシールに変更（中平作成）</li><li>封筒はすべて受付で配布、固定者分は前もって分けておく</li><li>各テーブルに名刺交換用紙袋を<em class="num">3枚</em>確実に入れる</li><li>リボン用テープは剥がしやすいものを選定</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#6366f1">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#6366f1"></span>
+                <span class="topic-card-title">代表交代・人事</span>
+            </div>
+            <ul class="topic-bullets"><li><em class="num">10月</em>桑畑代表が最後の例会</li><li><em class="num">11月</em>より新代表就任</li><li>坂口桜子が事務局長就任（都城から移籍）</li><li>岩田を副代表に任命</li><li>来年度から岩田・寺山を副代表</li><li>岩切が会計に就任（<em class="num">4月</em>から）</li><li>来季世話人に児玉、長、秋丸を起用（代表特権で決定）</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#0ea5e9">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#0ea5e9"></span>
+                <span class="topic-card-title">実行委員推薦・承認</span>
+            </div>
+            <ul class="topic-bullets"><li>岩倉さん（ゴルフ担当）・新さん：可決</li><li>下野さん・前田さん・樋渡さん・豊丸さん：承認</li><li>橋口さん：来月</li><li>高八重さん：実行委員承認</li><li>本田さん・串間さん・八尾さん・飯村さん・横山さん：<em class="num">5名</em>承認</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#10b981">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#10b981"></span>
+                <span class="topic-card-title">Lark活用</span>
+            </div>
+            <ul class="topic-bullets"><li>議事録・会計情報・TM記録を一元管理</li><li>アンケートシステム導入で例会参加者意見を収集・議題化</li><li>Larkからスプシへ反映できるシステム構築中</li><li>経費はレシートと引き換え（再度周知）</li><li>世話人会出欠名簿をLarkで管理</li><li>Lark移行でゲスト登録作業が一時混乱→リッチメニューのURLが古かったことが原因</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#f59e0b">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#f59e0b"></span>
+                <span class="topic-card-title">ラジオ部</span>
+            </div>
+            <ul class="topic-bullets"><li>現状約<em class="num">10万</em>円の赤字</li><li>前期・全前期の未収金を回収中</li><li><em class="num">1月</em>から番組構成変更：協賛企業紹介に特化</li><li>令和<em class="num">7年</em>度：月<em class="num">2</em>放送→令和<em class="num">8年</em>度：月<em class="num">1</em>放送（例会翌日）</li><li>男女<em class="num">2名</em>ずつのMC体制</li><li><em class="num">1回</em>の放送で最大<em class="num">10</em>社紹介</li><li>協賛企業<em class="num">17</em>社（宮崎・延岡・都城）</li><li>令和<em class="num">8年</em>度<em class="num">20</em>社全社入金完了→今期黒字スタート見込み</li><li>赤字分は<em class="num">2年</em><em class="num">1</em>か月の分割返済計画</li><li>局変更も視野に検討中</li><li>式次第広告との抱き合わせ案を検討</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#ec4899">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#ec4899"></span>
+                <span class="topic-card-title">2部会</span>
+            </div>
+            <ul class="topic-bullets"><li>参加人数急増で会場キャパ限界に近づいている</li><li><em class="num">2</em>会場制への移行を検討</li><li>次回から<em class="num">2</em>会場制にして<em class="num">1</em>会場あたりの人数変更</li><li>ドタ参禁止、リストバンドチェックを徹底</li><li>分煙は解決済み（<em class="num">2025年</em><em class="num">9月</em>から）</li><li>ウェルカムドリンク方式の導入を次回世話人会まで協議</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#8b5cf6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#8b5cf6"></span>
+                <span class="topic-card-title">会員フォロー</span>
+            </div>
+            <ul class="topic-bullets"><li>紹介者責任を改めて周知（退会者削減のため）</li><li>入会後<em class="num">3</em>か月をオンボーディング期間として設定</li><li>紹介者以外の世話人がサポーターとして付く体制を検討</li><li>緑会を入会から半年以内の参加必須に</li><li><em class="num">2回</em>目・<em class="num">3回</em>目参加者への個別ヒアリングを検討</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#14b8a6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#14b8a6"></span>
+                <span class="topic-card-title">遅刻者500円徴収</span>
+            </div>
+            <ul class="topic-bullets"><li>告知期間と文言を慎重に協議中</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#f97316">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#f97316"></span>
+                <span class="topic-card-title">広報・インスタ活用</span>
+            </div>
+            <ul class="topic-bullets"><li>インスタストーリーズでの収益化（過半数超えで決議）</li><li>動画<em class="num">1分</em>以内、制作はCapCutで対応</li><li>高橋リーダーとして広報部立ち上げ</li><li>式次第広告・ラジオとの兼ね合いを検討</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#6366f1">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#6366f1"></span>
+                <span class="topic-card-title">出発進行</span>
+            </div>
+            <ul class="topic-bullets"><li><em class="num">3</em>か月スパンで通知（時と場合により入れ替えあり）</li><li><em class="num">10月</em>：桑畑代表</li><li><em class="num">11月</em>：高橋さん</li><li><em class="num">12月</em>：衣笠さんor長田さん</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#0ea5e9">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#0ea5e9"></span>
+                <span class="topic-card-title">周年・外部イベント</span>
+            </div>
+            <ul class="topic-bullets"><li><em class="num">11月</em><em class="num">25日</em>：<em class="num">11月</em>例会（東京大会との兼ね合い）</li><li><em class="num">11</em>周年例会：<em class="num">200名</em>集客目標、記念例会でなく「<em class="num">11</em>周年例会」とアナウンス</li><li>佐賀<em class="num">12</em>周年：<em class="num">11月</em><em class="num">27日</em></li><li>鹿児島<em class="num">8</em>周年：<em class="num">11月</em><em class="num">11日</em></li><li>長崎諫早<em class="num">10</em>周年：<em class="num">10月</em><em class="num">16日</em>（花吉担当）</li><li>都城<em class="num">1</em>周年：<em class="num">10月</em><em class="num">23日</em></li><li>大分中央立ち上げ：<em class="num">11月</em><em class="num">5日</em>（花吉担当）</li><li>宝の山勉強会（佐賀）：<em class="num">2月</em><em class="num">26日</em>、参加枠<em class="num">9名</em>（参加不可）</li><li>守成アプリリリース予定（正会員のみ掲載）</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#10b981">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#10b981"></span>
+                <span class="topic-card-title">400名達成プラン</span>
+            </div>
+            <ul class="topic-bullets"><li>現在<em class="num">292名</em>→<em class="num">349名</em>（<em class="num">5月</em>時点）</li><li>准会員<em class="num">199名</em>のうちパターンC（紹介していない正会員予備軍）<em class="num">64名</em>が最短ルート</li><li><em class="num">1年</em>間で<em class="num">400</em>社を目標に設定</li><li>各部会の時間を「どうしたら達成できるか」に割く方向</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#f59e0b">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#f59e0b"></span>
+                <span class="topic-card-title">コンプライアンス</span>
+            </div>
+            <ul class="topic-bullets"><li>投資情報・政治・ネットワーク勧誘の禁止を司会台本に明記</li><li>全館禁煙（指定場所以外）を毎回アナウンス</li><li>トランシーバーは名乗ってから話すルールを再周知</li></ul>
+        </div></div></div>
+        </section>
+        <section class="ig-section">
+            <div class="section-label">
+                <span class="section-icon">📝</span>
+                <h2 class="section-heading">その他メモ</h2>
+            </div>
+            <div class="section-content"><ul class="memo-list"><li>守成クラブ宮崎の背景： 月次例会を中心とした商売交流会。車座商談・ブース出展・テーブルマスター制度が主要コンテンツ。全国<em class="num">307</em>会場中<em class="num">2</em>位の入会成績を誇る成長会場</li><li>Lark移行の経緯： スプレッドシート中心からLarkへの段階的移行を進めている。ゲスト登録のLINE→Lark変更時にURLの古さが原因でトラブルが発生した</li><li>本部NGルール（九州代表者会議で確認）： ①準会員の登壇（ワンコイン含む）、②チラシ全体配布（自テーブルのみ可）、③ブース出展（<em class="num">8月</em>より）</li><li>ラジオ部の構造： 守成クラブ宮崎が持つラジオ番組。協賛企業モデルで黒字化を目指す。赤字分は<em class="num">2年</em><em class="num">1</em>か月分割返済計画で解消予定</li><li>世話人定員： 会員数の<em class="num">10%</em>が目安。<em class="num">350名</em>なら<em class="num">35名</em>。<em class="num">20名</em>or<em class="num">25名</em>の上限で検討中</li><li>修学院（勉強会）： 小冊子<em class="num">10</em>冊で年間<em class="num">13,200円</em>。宮崎から<em class="num">30名</em>集めたい（<em class="num">4</em>役必須）</li><li>旅費規定： 世話人半額・<em class="num">4</em>役全額。単独移動なし、宿泊は<em class="num">2</em>部会必須。<em class="num">4</em>役は年<em class="num">1回</em>本部訪問必須</li><li>世話人懇親会： <em class="num">5月</em><em class="num">27日</em>(水)<em class="num">19時</em>〜。世話人手出し<em class="num">1,000円</em>・実行委員手出し<em class="num">3,000円</em></li><li>帯広の平川さん： <em class="num">10月</em><em class="num">20日</em>〜<em class="num">1</em>週間宮崎滞在。<em class="num">22日</em>の鹿児島南に同行者募集</li><li>守成アプリ： 会員情報閲覧機能（正会員のみ）。リリース予定</li></ul></div>
+        </section>
+        <section class="ig-section decision-section">
+            <div class="section-label">
+                <span class="section-icon">✅</span>
+                <h2 class="section-heading">決定事項</h2>
+            </div>
+            <div class="section-content"><div class="decision-rows">
+        <div class="decision-row">
+            <span class="decision-num-badge">1</span>
+            <span class="decision-text">車座を「<em class="num">3分</em>×<em class="num">2回</em>」に変更（<em class="num">11月</em>例会から正式導入）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">2</span>
+            <span class="decision-text">ゲスト入場廃止、リボン着用に変更</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">3</span>
+            <span class="decision-text">他会場紹介は会場ごとスクリーン投影＋司会読み上げに変更</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">4</span>
+            <span class="decision-text">ブース紹介廃止→テーブル配布用紙に変更</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">5</span>
+            <span class="decision-text">報告事項は司会が読み上げ（瓦版以外）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">6</span>
+            <span class="decision-text">名簿締切：月曜締切、以後名簿に載らない可能性を明記</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">7</span>
+            <span class="decision-text">PC<em class="num">3台</em>購入済み、受付に導入</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">8</span>
+            <span class="decision-text">実行委員複数名を可決（岩倉・新・下野・前田・樋渡・豊丸・高八重・本田・串間・八尾・飯村・横山）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">9</span>
+            <span class="decision-text">遅刻者<em class="num">500円</em>徴収：告知期間・文言を慎重に協議のうえ実施</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">10</span>
+            <span class="decision-text">インスタストーリーズ収益化を可決、高橋が広報部リーダーとして立ち上げ</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">11</span>
+            <span class="decision-text">坂口桜子が事務局長に就任（<em class="num">11月</em>から）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">12</span>
+            <span class="decision-text">岩田を副代表に任命</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">13</span>
+            <span class="decision-text">岩切が会計に就任</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">14</span>
+            <span class="decision-text">世話人会<em class="num">2日</em>前に議案を議事録にアップ、各自事前確認必須</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">15</span>
+            <span class="decision-text">各テーブルに名刺交換用紙袋を<em class="num">3枚</em>配置</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">16</span>
+            <span class="decision-text">旗クリーニングを最低年<em class="num">1回</em>（周年前）実施</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">17</span>
+            <span class="decision-text">ラジオの赤字分：<em class="num">2年</em><em class="num">1</em>か月の分割返済計画</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">18</span>
+            <span class="decision-text">令和<em class="num">8年</em>度ラジオ：月<em class="num">1</em>放送（例会翌日）、男女<em class="num">2名</em>ずつMC体制</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">19</span>
+            <span class="decision-text">緑会を入会から半年以内の参加必須に設定</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">20</span>
+            <span class="decision-text">紹介者責任の周知徹底（退会者削減）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">21</span>
+            <span class="decision-text"><em class="num">400名</em>達成と同時に昼会場立ち上げを正式許可</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">22</span>
+            <span class="decision-text"><em class="num">2</em>部会を次回から<em class="num">2</em>会場制に変更</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">23</span>
+            <span class="decision-text">車座<em class="num">2回</em>目はゆっくり<em class="num">1分</em>以上、最後にテーブル番号を言う運用に確定</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">24</span>
+            <span class="decision-text">TM指名形式で話す順番を統一</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">25</span>
+            <span class="decision-text">名刺交換用紙袋：ゲストと他会場参加者に配布ルール明確化</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">26</span>
+            <span class="decision-text">受付名簿を五十音順に変更（検討中）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">27</span>
+            <span class="decision-text">式次第広告の締切を例会前週の金曜日に設定</span>
+        </div></div></div>
+        </section>
+        <section class="ig-section action-section">
+            <div class="section-label">
+                <span class="section-icon">⚡</span>
+                <h2 class="section-heading">ネクストアクション</h2>
+            </div>
+            <div class="section-content"><div class="action-table">
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>岩切</span>
+            </div>
+            <div class="action-task">会計業務開始・<em class="num">2</em>部会担当引継</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>4月〜</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>岩切</span>
+            </div>
+            <div class="action-task">受付でPCの見積もり取得</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>中平</span>
+            </div>
+            <div class="action-task">席札シール作成</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>次回例会前</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>中平</span>
+            </div>
+            <div class="action-task">当日資料作成マニュアル作成</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">Larkへの情報集約・管理</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>継続</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">Lステップ後継者（高八重）へのレクチャー</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">事業内容変更案内の方法を検討</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">全国本部冊子の宮崎ローカル化（AI/Lark活用）</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>高橋</span>
+            </div>
+            <div class="action-task">インスタ広報部立ち上げ・運用詳細をまとめる</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>高橋</span>
+            </div>
+            <div class="action-task">ラジオ未収<em class="num">10名</em>フォロー</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>花吉</span>
+            </div>
+            <div class="action-task">TM勉強会の継続開催</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>次回12月予定</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>花吉</span>
+            </div>
+            <div class="action-task">TM確保を世話人・実行委員全員で協力</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>継続</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>坂口（桜子）</span>
+            </div>
+            <div class="action-task">「この人いませんか」LINE対応テンプレをグループノートに記載</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>緒方（事務局）</span>
+            </div>
+            <div class="action-task">アンケートを例会後すぐに配信するよう改善</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>次回例会から</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>中野</span>
+            </div>
+            <div class="action-task">ラジオ部<em class="num">5月</em>請求書発行・未収フォロー</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>有田・長田</span>
+            </div>
+            <div class="action-task">ラジオ部未収フォロー</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>永吉</span>
+            </div>
+            <div class="action-task"><em class="num">2</em>部会受付担当として就任</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>4月〜</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>秋丸</span>
+            </div>
+            <div class="action-task">ゲスト説明司会に就任（今月から見学、<em class="num">2月</em>実践、<em class="num">3月</em>完全シフト）</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>3月まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>代表</span>
+            </div>
+            <div class="action-task">昼会場代表候補の個別推薦受付</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>翌日24時締切</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>代表</span>
+            </div>
+            <div class="action-task">オリジナル曲制作の意見収集・決定</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>翌日24時締切</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>全世話人</span>
+            </div>
+            <div class="action-task">全国大会参加希望連絡</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>7日17時まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>岩田・永吉・原口・新里・樋渡</span>
+            </div>
+            <div class="action-task">中平へメールアドレスを送信</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>至急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>フォロー部</span>
+            </div>
+            <div class="action-task"><em class="num">6月</em>更新会員の確認</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>フォロー部</span>
+            </div>
+            <div class="action-task">パターンC会員<em class="num">64名</em>へのアプローチ実行</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>継続</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>事務局</span>
+            </div>
+            <div class="action-task">Lステップ vs Lark運用の再協議</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>事務局</span>
+            </div>
+            <div class="action-task">修学院チェック体制の強化</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>TM部会</span>
+            </div>
+            <div class="action-task"><em class="num">3</em>コース勉強会のスケジュール（<em class="num">3月</em>まで）を提出</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>受付担当</span>
+            </div>
+            <div class="action-task">封筒アルファベット順整列を例会<em class="num">15分</em>前までに完了</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>次回例会から</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>担当未定</span>
+            </div>
+            <div class="action-task">ウェルカムドリンク方式の導入を協議</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>次回世話人会まで</span>
+            </div>
+        </div></div></div>
+        </section>
+    </div>
+    <div class="ig-footer">株式会社Entime / 寺山 大夢</div>
+</body>
+</html>

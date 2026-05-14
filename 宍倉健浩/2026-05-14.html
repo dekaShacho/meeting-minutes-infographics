@@ -355,29 +355,29 @@
         <div class="ig-header-inner">
             <div class="ig-badge">📄 議事録</div>
             <h1 class="ig-title">宍倉 健浩　2026年5月14日</h1>
-            <p class="ig-overview">Lark講座向け会員アプリのUI/UX設計・機能要件を詰め、木曜日の実装作業に向けて仕様を合意した。</p>
+            <p class="ig-overview">受講生向けLarkポータルアプリの現状確認・ログイン問題の解消・今後のブラッシュアップ方針を議論した。</p>
             <div class="ig-meta">
                 <span class="meta-date">🗓 2026年5月14日</span>
-                <div class="person-chips"><span class="person-chip">寺山 大夢（Lark研究所）</span><span class="person-chip">宍倉 健浩</span></div>
+                <div class="person-chips"><span class="person-chip">- 寺山 大夢（Lark研究所で発信中）</span></div>
             </div>
         </div>
         
     <div class="stats-band">
         <div class="stat-box">
             <div class="stat-icon">📋</div>
-            <div class="stat-num">9</div>
+            <div class="stat-num">8</div>
             <div class="stat-label">議題</div>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-box">
             <div class="stat-icon">✅</div>
-            <div class="stat-num">7</div>
+            <div class="stat-num">6</div>
             <div class="stat-label">決定事項</div>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-box">
             <div class="stat-icon">⚡</div>
-            <div class="stat-num">7</div>
+            <div class="stat-num">8</div>
             <div class="stat-label">アクション</div>
         </div>
     </div>
@@ -393,58 +393,51 @@
         <div class="topic-card" style="--accent:#6366f1">
             <div class="topic-card-header">
                 <span class="topic-dot" style="background:#6366f1"></span>
-                <span class="topic-card-title">事前準備・環境確認</span>
+                <span class="topic-card-title">ログイン問題の確認と解決</span>
             </div>
-            <ul class="topic-bullets"><li>Lark App ID/Secret、AnthropicのAPI、Vercel、Cloudflareはほぼ取得済み</li><li>Wrangler CLI のみ未確認</li><li>不足分は作業中に都度取得する方針</li></ul>
+            <ul class="topic-bullets"><li>Lark MCPの使用権限がないとログイン不可の状態</li><li>メールアドレス＋パスワード認証方式に切り替えで解決</li><li>寺山アカウントの認証情報を共有し宍倉が動作確認</li><li>Larkアカウント共有はチャット等も紐づくためリスクあり</li></ul>
         </div>
         <div class="topic-card" style="--accent:#0ea5e9">
             <div class="topic-card-header">
                 <span class="topic-dot" style="background:#0ea5e9"></span>
-                <span class="topic-card-title">UI/UX方針</span>
+                <span class="topic-card-title">アプリ現状のUI・機能確認</span>
             </div>
-            <ul class="topic-bullets"><li>PC専用設計（スマホ最適化なし）</li><li>理由：Lark上での成果物編集はPC必須のため</li><li>メインカラー：ネイビー＋白背景、明朝体フォント</li><li>参考デザイン：宴・マネーフォワード（左サイドメニュー型）</li></ul>
+            <ul class="topic-bullets"><li>「今日のタスク」「次回の予定」「最近完了した成果物」の全て見るボタンが未実装</li><li>「カレンダーに登録」等の未実装機能は「準備中」表示に変更必要</li><li>詳細な指示（どのボタンを・どう動かすか）を渡すことで精度向上</li><li>ナレッジ保管庫・AIボットは一定動作確認済み</li></ul>
         </div>
         <div class="topic-card" style="--accent:#10b981">
             <div class="topic-card-header">
                 <span class="topic-dot" style="background:#10b981"></span>
-                <span class="topic-card-title">決済・アカウント管理機能</span>
+                <span class="topic-card-title">決済・権限設計の方針</span>
             </div>
-            <ul class="topic-bullets"><li>アカウント付与日から<em class="num">180日</em>間は無料、<em class="num">181日</em>目以降は月額自動課金</li><li>決済サービス：UnivaPay（現在宴と連携して利用中）</li><li>Stripeは宍倉氏の既知ツール、UnivaPayの対応は要確認</li><li>未決済→ログイン不可の連携をSupabaseで設計</li></ul>
+            <ul class="topic-bullets"><li>半年後に月<em class="num">1万</em><em class="num">1千</em>円のAPI料金徴収を想定</li><li>ユーザーランク設計：管理者／コーチ／選手＋課金済（プレミアム）／未課金（スタンダード）の<em class="num">2</em>軸</li><li>決済連動でのランク切り替えはStripeなど外部サービス活用を推奨</li><li>現時点は決済ゼロで先行。初期フェーズ→決済導入→機能制限の段階設計を先に作成すべき</li></ul>
         </div>
         <div class="topic-card" style="--accent:#f59e0b">
             <div class="topic-card-header">
                 <span class="topic-dot" style="background:#f59e0b"></span>
-                <span class="topic-card-title">アプリ全体構成（5画面）</span>
+                <span class="topic-card-title">初期リリース・フィードバック方針</span>
             </div>
-            <ul class="topic-bullets"><li>ログイン画面：初回ログイン時に表示</li><li>ロードマップ生成画面：初回ログイン直後に強制起動するチャットボット</li><li>ダッシュボード（ホーム）：今日やるべきタスク・チェックリスト・提出期限表示</li><li>AIボット画面：用途別<em class="num">4</em>種のチャットボット（棚卸君・設計君・事例君等）</li><li>ナレッジ保管庫：動画・資料・テキストを検索・一覧表示→Larkへリンク遷移</li></ul>
+            <ul class="topic-bullets"><li>既存受講生<em class="num">5人</em>に先行利用してもらいフィードバック取得予定</li><li>中上級者（受講歴半年以上）が先行ユーザー</li><li>AIボット・ナレッジ保管庫検索を優先して整備</li><li><em class="num">6月</em>末を目処にブラッシュアップ期間を区切ることを推奨</li></ul>
         </div>
         <div class="topic-card" style="--accent:#ec4899">
             <div class="topic-card-header">
                 <span class="topic-dot" style="background:#ec4899"></span>
-                <span class="topic-card-title">ロードマップ生成の設計</span>
+                <span class="topic-card-title">コンテンツ・ナレッジ整備</span>
             </div>
-            <ul class="topic-bullets"><li>ユーザーが複数の質問に回答→個別最適化されたロードマップを自動生成</li><li><em class="num">5</em>カテゴリー（顧客管理・日報・外注管理・KPI等）から作るものを選択</li><li>フェーズ単位（フェーズ<em class="num">0</em>〜<em class="num">3</em>程度）で構成、<em class="num">1日</em>単位の細分化はしない</li><li>タスクにチェック機能を付与、未チェック＝未完了タスクを優先表示</li><li>遅延時は未完了タスクをまとめて表示（例：<em class="num">3日</em>遅延なら<em class="num">3</em>タスク表示）</li></ul>
+            <ul class="topic-bullets"><li>動画＋理解度確認（クイズ・宿題）のセットがロードマップに必要</li><li>受講生の成功事例動画をゴールイメージとして掲載予定</li><li>暗黙知の言語化：ミーティング録音・チャット記録をすべて残し随時ブラッシュアップ</li><li>AI任せにせず自分の目利きを必ず挟むことが重要</li></ul>
         </div>
         <div class="topic-card" style="--accent:#8b5cf6">
             <div class="topic-card-header">
                 <span class="topic-dot" style="background:#8b5cf6"></span>
-                <span class="topic-card-title">AIボットの設計方針</span>
+                <span class="topic-card-title">インフラ・技術構成の整理</span>
             </div>
-            <ul class="topic-bullets"><li>アプリ内完結型（外部GPTsへの遷移なし）</li><li>APIはAnthropicのClaude（OpusまたはSonnet）を使用</li><li>API費用は寺山氏が負担、月<em class="num">1.1万</em>円のシステム費として<em class="num">180日</em>以降に徴収</li><li>ログは完成品・要約のみ保存（全会話ログは不要）</li><li>Larkデータベースは<em class="num">2万</em>行まで現行料金、超過後は<em class="num">100万</em>行プランへ移行可</li></ul>
+            <ul class="topic-bullets"><li>現構成：Vercel（フロント）＋Supabase（DB）</li><li>Cloudflareとの組み合わせはドメイン固定・複雑なAPI管理時に有効。現時点は不要</li><li>表示速度改善：初期表示データ量を絞る・画像の遅延読み込みで対応可能</li><li>ネイティブアプリ比でWebアプリは反応が遅いが改善の余地あり</li></ul>
         </div>
         <div class="topic-card" style="--accent:#14b8a6">
             <div class="topic-card-header">
                 <span class="topic-dot" style="background:#14b8a6"></span>
-                <span class="topic-card-title">コスト・インフラ</span>
+                <span class="topic-card-title">フォルダ構造・プロジェクト設計</span>
             </div>
-            <ul class="topic-bullets"><li>Vercel：動的処理（AI稼働）担当、無料プラン想定</li><li>Cloudflare：画面表示担当、無料プラン想定</li><li>API費用のみ実費（ロードマップ生成・AIボットの<em class="num">2</em>箇所）</li><li>宍倉氏の見積もり：<em class="num">3</em>〜<em class="num">5万</em>円程度</li></ul>
-        </div>
-        <div class="topic-card" style="--accent:#f97316">
-            <div class="topic-card-header">
-                <span class="topic-dot" style="background:#f97316"></span>
-                <span class="topic-card-title">講座設計の変更点</span>
-            </div>
-            <ul class="topic-bullets"><li>自社活用コース・仕事受注コースを統合し単一プランに</li><li>VIPプランのみ別途設定（寺山氏とのマンツーマン）</li><li>勉強会を日中開催→夜間開催にシフト</li><li>アウトプット提出（発表資料等）の期限管理をアプリ内に実装予定</li></ul>
+            <ul class="topic-bullets"><li>現状：最上位「カーソル」フォルダに複数事業フォルダが混在</li><li>推奨構造：事業部（縦）×プロジェクト（横）のハイブリッド構成</li><li>CMO・CFOなど役割をClaude MDファイルで定義し、プロジェクトごとに参照させる</li><li>フォルダ整理はアプリ開発を一時停止してから実施推奨</li><li>Claudeの公式推奨ディレクトリ構成をリサーチして導入する方針</li></ul>
         </div></div></div>
         </section>
         <section class="ig-section">
@@ -452,7 +445,7 @@
                 <span class="section-icon">📝</span>
                 <h2 class="section-heading">その他メモ</h2>
             </div>
-            <div class="section-content"><ul class="memo-list"><li>現在受講生は約<em class="num">100名</em>規模</li><li>既存のLarkナレッジベースには質問パターンが<em class="num">50</em>〜<em class="num">60件</em>蓄積済み</li><li>過去はGPTsで「データベース正規化テンプレ」を提供していたが、ログが取れず利用状況不明という課題があった</li><li>発表会（アウトプット評価）はこれまで日中・リアルタイム開催、今後は夜間＋期限提出型に変更予定</li><li>寺山氏への振り込みは本日<em class="num">13時</em>時点で完了済み</li></ul></div>
+            <div class="section-content"><ul class="memo-list"><li>ChatWorkアカウント問題：宍倉のアカウントがクレジットカード問題でログイン不可。別アカウントが動いている状況で問い合わせ中</li><li>Claude Codeの別名問題：複数プロジェクトへの導入によりメモリが混在し、異なる名前が表示されるバグが発生</li><li>マルチタスクの弊害：宍倉自身も複数アプリを同時開発して中途半端になった経験あり。<em class="num">1</em>つを完成させてから次へ進む方針を強く推奨</li><li>将来的な製品化：Lark利用者全般に向けた外部アプリとしてリリースする場合はインフラのセキュリティ設計が別途必要</li><li>API料金の懸念：提案資料・画像・動画生成はトークン消費が大きいため、提供機能の選定に注意が必要</li><li>会議終盤、寺山のPCがメモリ過負荷で画面共有不能・操作困難になり終了</li></ul></div>
         </section>
         <section class="ig-section decision-section">
             <div class="section-label">
@@ -462,31 +455,27 @@
             <div class="section-content"><div class="decision-rows">
         <div class="decision-row">
             <span class="decision-num-badge">1</span>
-            <span class="decision-text">アプリはPC専用設計、スマホ最適化なし</span>
+            <span class="decision-text">ログイン方式をLark MCP依存からメールアドレス認証に変更する</span>
         </div>
         <div class="decision-row">
             <span class="decision-num-badge">2</span>
-            <span class="decision-text"><em class="num">180日</em>無料→<em class="num">181日</em>目以降UnivaPayで月額自動課金</span>
+            <span class="decision-text">未実装機能のボタンに「準備中」表示を追加する</span>
         </div>
         <div class="decision-row">
             <span class="decision-num-badge">3</span>
-            <span class="decision-text">未決済ユーザーはログイン不可とする（Supabase連携）</span>
+            <span class="decision-text">決済実装は当面見送り、コンテンツ・AIボット整備を優先する</span>
         </div>
         <div class="decision-row">
             <span class="decision-num-badge">4</span>
-            <span class="decision-text">ロードマップは質問回答式で個別生成（パターン<em class="num">2</em>：詳細質問→テンプレ微修正）</span>
+            <span class="decision-text"><em class="num">6月</em>末を目処にブラッシュアップ期間を設定し、その後決済導入フェーズへ移行</span>
         </div>
         <div class="decision-row">
             <span class="decision-num-badge">5</span>
-            <span class="decision-text">AIボットは用途別<em class="num">4</em>種、アプリ内完結、ログは要約のみ保存</span>
+            <span class="decision-text">フォルダ構造整理はアプリ開発を停止してから実施する</span>
         </div>
         <div class="decision-row">
             <span class="decision-num-badge">6</span>
-            <span class="decision-text"><em class="num">5</em>画面構成（ログイン・ロードマップ生成・ダッシュボード・AIボット・ナレッジ保管庫）</span>
-        </div>
-        <div class="decision-row">
-            <span class="decision-num-badge">7</span>
-            <span class="decision-text">今日のセッションでUI画像を生成し、木曜日に実装最終すり合わせを実施</span>
+            <span class="decision-text">GitHubリポジトリをプライベートで宍倉をコラボレーター招待する形で共有する</span>
         </div></div></div>
         </section>
         <section class="ig-section action-section">
@@ -498,45 +487,12 @@
         <div class="action-row">
             <div class="action-person">
                 <span class="person-icon">👤</span>
-                <span>宍倉</span>
+                <span>寺山</span>
             </div>
-            <div class="action-task">UI画像（<em class="num">5</em>画面）をChatGPT（Canvas/画像生成）で作成</div>
+            <div class="action-task">パソコン再起動・キャッシュクリア後にアプリ開発環境を整備</div>
             <div class="action-deadline">
                 <span class="deadline-icon">📅</span>
-                <span>木曜日前</span>
-            </div>
-        </div>
-        <div class="action-row">
-            <div class="action-person">
-                <span class="person-icon">👤</span>
-                <span>宍倉</span>
-            </div>
-            <div class="action-task">事前準備リストを「これだけやれ」形式に改訂して送付</div>
-            <div class="action-deadline">
-                <span class="deadline-icon">📅</span>
-                <span>木曜日前</span>
-            </div>
-        </div>
-        <div class="action-row">
-            <div class="action-person">
-                <span class="person-icon">👤</span>
-                <span>宍倉</span>
-            </div>
-            <div class="action-task">UnivaPayとStripe/Supabase連携の実現可否確認</div>
-            <div class="action-deadline">
-                <span class="deadline-icon">📅</span>
-                <span>木曜日前</span>
-            </div>
-        </div>
-        <div class="action-row">
-            <div class="action-person">
-                <span class="person-icon">👤</span>
-                <span>宍倉</span>
-            </div>
-            <div class="action-task">木曜日セッションで実装完成まで持ち込む</div>
-            <div class="action-deadline">
-                <span class="deadline-icon">📅</span>
-                <span>木曜日</span>
+                <span>即時</span>
             </div>
         </div>
         <div class="action-row">
@@ -544,10 +500,10 @@
                 <span class="person-icon">👤</span>
                 <span>寺山</span>
             </div>
-            <div class="action-task">Wrangler CLIの取得確認</div>
+            <div class="action-task">Claudeに未実装ボタンへの「準備中」表示を指示（詳細に）</div>
             <div class="action-deadline">
                 <span class="deadline-icon">📅</span>
-                <span>木曜日前</span>
+                <span>即時</span>
             </div>
         </div>
         <div class="action-row">
@@ -555,10 +511,10 @@
                 <span class="person-icon">👤</span>
                 <span>寺山</span>
             </div>
-            <div class="action-task"><em class="num">5</em>カテゴリーのロードマップ質問設計・タスク細分化を整理</div>
+            <div class="action-task">フォルダ構造をハイブリッド構成に整理（開発一時停止して実施）</div>
             <div class="action-deadline">
                 <span class="deadline-icon">📅</span>
-                <span>木曜日前</span>
+                <span>早急に</span>
             </div>
         </div>
         <div class="action-row">
@@ -566,10 +522,54 @@
                 <span class="person-icon">👤</span>
                 <span>寺山</span>
             </div>
-            <div class="action-task">送付済みロードマップ資料（<em class="num">5</em>カテゴリー）を宍倉にLarkチャットで共有済</div>
+            <div class="action-task">GitHubリポジトリに宍倉を招待</div>
             <div class="action-deadline">
                 <span class="deadline-icon">📅</span>
-                <span>完了</span>
+                <span>早急に</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">既存受講生<em class="num">5人</em>への先行利用案内・フィードバック収集開始</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>6月末まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">Claudeの公式推奨ディレクトリ構成をリサーチして導入</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>次回開発時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">ミーティング・チャット記録をナレッジとして蓄積・ブラッシュアップ継続</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>宍倉</span>
+            </div>
+            <div class="action-task">技術的につまずいた際のチャットサポート対応</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
             </div>
         </div></div></div>
         </section>

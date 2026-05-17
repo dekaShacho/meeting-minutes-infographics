@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宍倉 健浩　2026年5月18日</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            background: #f0f4f8;
+            color: #1a202c;
+            line-height: 1.65;
+        }
+
+        /* ══ HEADER ══ */
+        .ig-header {
+            background: linear-gradient(140deg, #0f1c35 0%, #0f3460 60%, #1a4a8a 100%);
+            color: #fff;
+        }
+        .ig-header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 52px 48px 40px;
+        }
+        .ig-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(249,115,22,0.9);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .ig-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 18px;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .ig-overview {
+            font-size: 1rem;
+            color: #a8c4e0;
+            line-height: 1.75;
+            max-width: 680px;
+            margin-bottom: 28px;
+        }
+        .ig-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .meta-date {
+            font-size: 0.82rem;
+            color: #7098bf;
+            font-weight: 600;
+        }
+        .person-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .person-chip {
+            background: rgba(255,255,255,0.12);
+            color: #d0e4f7;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* ══ STATS BAND ══ */
+        .stats-band {
+            display: flex;
+            align-items: stretch;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .stat-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px;
+            gap: 3px;
+        }
+        .stat-icon { font-size: 1.2rem; }
+        .stat-num {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #38bdf8;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.68rem;
+            color: #7098bf;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+        .stat-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.08);
+            align-self: stretch;
+            margin: 12px 0;
+        }
+
+        /* ══ SECTION LAYOUT ══ */
+        .ig-section {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 48px;
+        }
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .section-icon {
+            font-size: 1.4rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+        .section-heading {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.01em;
+        }
+        .section-content { }
+
+        /* ══ TOPIC CARDS ══ */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .topic-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            overflow: hidden;
+            border: 1px solid #e8edf2;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .topic-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .topic-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px 12px;
+            background: color-mix(in srgb, var(--accent) 8%, #fff);
+            border-bottom: 2px solid color-mix(in srgb, var(--accent) 20%, transparent);
+        }
+        .topic-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .topic-card-title {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.4;
+        }
+        .topic-bullets {
+            list-style: none;
+            padding: 14px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .topic-bullets li {
+            font-size: 0.85rem;
+            color: #374151;
+            line-height: 1.6;
+            padding-left: 14px;
+            position: relative;
+        }
+        .topic-bullets li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* ══ MEMO LIST ══ */
+        .memo-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .memo-list li {
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px 16px 12px 18px;
+            font-size: 0.9rem;
+            color: #374151;
+            line-height: 1.65;
+            border-left: 4px solid #cbd5e1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* ══ DECISIONS ══ */
+        .decision-section .section-icon { background: #f0fdf4; }
+        .decision-section .section-heading { color: #065f46; }
+        .decision-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .decision-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            border: 1px solid #d1fae5;
+        }
+        .decision-num-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .decision-text {
+            font-size: 0.92rem;
+            color: #064e3b;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        /* ══ ACTIONS ══ */
+        .action-section .section-icon { background: #fff7ed; }
+        .action-section .section-heading { color: #9a3412; }
+        .action-table {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid #fed7aa;
+        }
+        .action-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 160px;
+            gap: 0;
+            background: #fff;
+            border-bottom: 1px solid #fed7aa;
+        }
+        .action-row:last-child { border-bottom: none; }
+        .action-row:nth-child(even) { background: #fffbf7; }
+        .action-person {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 16px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #9a3412;
+            border-right: 1px solid #fed7aa;
+        }
+        .person-icon { font-size: 0.9rem; }
+        .action-task {
+            padding: 14px 16px;
+            font-size: 0.88rem;
+            color: #1a202c;
+            line-height: 1.6;
+            border-right: 1px solid #fed7aa;
+        }
+        .action-deadline {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 16px;
+            font-size: 0.8rem;
+            color: #b45309;
+            font-weight: 600;
+        }
+        .deadline-icon { font-size: 0.85rem; }
+
+        /* ══ NUMBER HIGHLIGHT ══ */
+        em.num {
+            font-style: normal;
+            font-weight: 700;
+            color: #0369a1;
+            background: #e0f2fe;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* ══ FOOTER ══ */
+        .ig-footer {
+            text-align: center;
+            padding: 48px 24px;
+            color: #94a3b8;
+            font-size: 0.78rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media (max-width: 640px) {
+            .ig-header-inner { padding: 36px 24px 28px; }
+            .ig-title { font-size: 1.7rem; }
+            .ig-section { padding: 0 20px; margin: 28px auto; }
+            .card-grid { grid-template-columns: 1fr; }
+            .action-row { grid-template-columns: 1fr; }
+            .action-person, .action-task, .action-deadline {
+                border-right: none;
+                border-bottom: 1px solid #fed7aa;
+                padding: 10px 16px;
+            }
+            .action-deadline { border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="ig-header">
+        <div class="ig-header-inner">
+            <div class="ig-badge">📄 議事録</div>
+            <h1 class="ig-title">宍倉 健浩　2026年5月18日</h1>
+            <p class="ig-overview">受講生向けLarkアプリの現状確認・ログイン問題の解決・今後の開発方針の整理を実施。</p>
+            <div class="ig-meta">
+                <span class="meta-date">🗓 2026年5月18日</span>
+                <div class="person-chips"><span class="person-chip">- 寺山 大夢（Lark研究所）</span></div>
+            </div>
+        </div>
+        
+    <div class="stats-band">
+        <div class="stat-box">
+            <div class="stat-icon">📋</div>
+            <div class="stat-num">8</div>
+            <div class="stat-label">議題</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+            <div class="stat-icon">✅</div>
+            <div class="stat-num">6</div>
+            <div class="stat-label">決定事項</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-num">10</div>
+            <div class="stat-label">アクション</div>
+        </div>
+    </div>
+    </div>
+    <div class="ig-body">
+        
+        <section class="ig-section">
+            <div class="section-label">
+                <span class="section-icon">📋</span>
+                <h2 class="section-heading">主な議題と内容</h2>
+            </div>
+            <div class="section-content"><div class="card-grid">
+        <div class="topic-card" style="--accent:#6366f1">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#6366f1"></span>
+                <span class="topic-card-title">ログイン問題の確認と解決</span>
+            </div>
+            <ul class="topic-bullets"><li>MCPインストール未済ユーザーがログイン不可になっていた</li><li>メールアドレス＋会員情報一致でのログイン方式に変更</li><li>宍倉さんのアカウントでログイン確認→成功</li><li>Larkアカウントでのログインは情報漏洩リスクがあるため不採用</li><li>最終的にはLark Marketplaceでの公開（選択肢C）を目指す方針</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#0ea5e9">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#0ea5e9"></span>
+                <span class="topic-card-title">アプリの現状と機能評価</span>
+            </div>
+            <ul class="topic-bullets"><li>ダッシュボード・ロードマップ・ナレッジ保管庫等の画面は表示確認済み</li><li>カレンダー登録・全て見るボタン等、未接続機能は「準備中」表示が必要</li><li>反応速度改善策：表示件数を最初<em class="num">5件</em>に絞り「続きを見る」ボタンを追加</li><li>Vercel（バーセル）のウェブアプリのため、ネイティブアプリより若干レスポンス遅い</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#10b981">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#10b981"></span>
+                <span class="topic-card-title">課金・権限設計の方針</span>
+            </div>
+            <ul class="topic-bullets"><li>現時点では課金機能は未実装でよい（まず商品力向上を優先）</li><li>将来構想：月額<em class="num">1万</em><em class="num">1千</em>円のAPI利用料を<em class="num">6ヶ</em>月後ごろに設定</li><li>権限ランク設計（案）：管理者 / コーチ / 選手、かつ課金済み（プレミアム） / 未課金（スタンダード）</li><li>Stripe等の決済連動でメンバーDBのランク列を自動切替する設計が必要</li><li>決済周りは設計を先に固めてから実装すること</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#f59e0b">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#f59e0b"></span>
+                <span class="topic-card-title">コンテンツ・ナレッジ整備の方針</span>
+            </div>
+            <ul class="topic-bullets"><li>受講生の自分専用秘書ニーズ：雑談→整理→実装まで対応する形を想定</li><li>ロードマップの各ステップに動画・宿題・理解度確認を紐づける必要あり</li><li>コンテンツ紐づけ作業はAI任せ禁止、自分の目利きを必ず挟む</li><li>暗黙知の収集：全会話・チャットを残し「暗黙知ボックス」に蓄積→AI定期ブラッシュアップ</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#ec4899">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#ec4899"></span>
+                <span class="topic-card-title">開発の進め方・優先順位</span>
+            </div>
+            <ul class="topic-bullets"><li>直近<em class="num">5人</em>の受講生に先行利用してもらいフィードバック収集</li><li><em class="num">1ヶ</em>月後ごろを目安に決済周りの構築に着手</li><li>機能の横展開と縦深化を同時にしない：期間（<em class="num">6月</em>末を目安）を決めて集中</li><li>同時並行開発は最大<em class="num">2</em>本まで推奨</li><li>設計→宍倉さんチェック→実装の<em class="num">2</em>段階を必ず守る</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#8b5cf6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#8b5cf6"></span>
+                <span class="topic-card-title">Vercel・Cloudflareの役割整理</span>
+            </div>
+            <ul class="topic-bullets"><li>Vercelのみで動的機能（APIを使った生成等）は実現可能</li><li>Cloudflareはドメイン管理やインフラセキュリティの強化目的で組み合わせ使用</li><li>製品として本格リリースする段階になれば両方活用が有効</li></ul>
+        </div>
+        <div class="topic-card" style="--accent:#14b8a6">
+            <div class="topic-card-header">
+                <span class="topic-dot" style="background:#14b8a6"></span>
+                <span class="topic-card-title">フォルダ構造の整理</span>
+            </div>
+            <ul class="topic-bullets"><li>現状：最上位「カーソル（プロジェクト）」配下に複数フォルダが混在</li><li>推奨構造：事業部（営業・マーケティング等）×プロジェクト（ランニング・AI等）のハイブリッド型</li><li>Claude公式が推奨するフォルダ構成をリサーチして導入する方針</li><li>フォルダ整理はアプリ開発を一時停止してから実施すること（混在防止）</li><li>Gitにあげてプライベートリポジトリ化→宍倉さんを招待すれば共同確認が可能</li></ul>
+        </div></div></div>
+        </section>
+        <section class="ig-section">
+            <div class="section-label">
+                <span class="section-icon">📝</span>
+                <h2 class="section-heading">その他メモ</h2>
+            </div>
+            <div class="section-content"><ul class="memo-list"><li>チャットワークで宍倉さんのアカウントが不正利用疑いの事象が発生（クレジットカード問題でログイン不可・問い合わせ中）</li><li>Claude Codeでは複数プロジェクト名をメモリが混在させてしまう事象あり（別途対応）</li><li>寺山さんは同会議中にPC画面共有不能・文字見えない等のリソース枯渇が発生→再起動を優先</li><li>「自分専用秘書」という受講生の言語化がプロダクトコンセプトとして有効な示唆</li><li>寺山さんはLark関連の協会を新たに立ち上げ（WordPress運用中）</li></ul></div>
+        </section>
+        <section class="ig-section decision-section">
+            <div class="section-label">
+                <span class="section-icon">✅</span>
+                <h2 class="section-heading">決定事項</h2>
+            </div>
+            <div class="section-content"><div class="decision-rows">
+        <div class="decision-row">
+            <span class="decision-num-badge">1</span>
+            <span class="decision-text">ログイン方式をメールアドレス＋会員情報一致方式に変更（MCP不要）</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">2</span>
+            <span class="decision-text">未接続機能ボタンには「準備中」表示を追加する</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">3</span>
+            <span class="decision-text">当面は課金機能を実装せず、<em class="num">5人</em>の受講生へ先行リリースしフィードバック取得</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">4</span>
+            <span class="decision-text">開発期間の上限を<em class="num">6月</em>末目安に設定し、その後に決済実装フェーズへ移行</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">5</span>
+            <span class="decision-text">フォルダ構造整理はアプリ開発を止めてから実施する</span>
+        </div>
+        <div class="decision-row">
+            <span class="decision-num-badge">6</span>
+            <span class="decision-text">GitリポジトリをプライベートにしてGitHubで宍倉さんを招待する</span>
+        </div></div></div>
+        </section>
+        <section class="ig-section action-section">
+            <div class="section-label">
+                <span class="section-icon">⚡</span>
+                <h2 class="section-heading">ネクストアクション</h2>
+            </div>
+            <div class="section-content"><div class="action-table">
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">PCを再起動しメモリ・キャッシュをクリア</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>当日中</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">未接続ボタン全てに「準備中」表示を追加するよう指示</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">フォルダ構造を整理（アプリ開発を一時停止して実施）</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">Claude公式推奨フォルダ構成をリサーチし導入</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>フォルダ整理時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">GitリポジトリをプライベートにしてGitHubで宍倉さんを招待</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>早急</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">受講生<em class="num">5人</em>への先行リリース開始・フィードバック収集</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>〜1ヶ月以内</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">暗黙知ボックス構築開始（会話・チャットを蓄積）</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>継続</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>寺山</span>
+            </div>
+            <div class="action-task">ロードマップ×ナレッジ×動画の紐づけ整理（AI任せ禁止）</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>6月末まで</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>宍倉</span>
+            </div>
+            <div class="action-task">つまずいた際のチャットサポート対応</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>随時</span>
+            </div>
+        </div>
+        <div class="action-row">
+            <div class="action-person">
+                <span class="person-icon">👤</span>
+                <span>宍倉</span>
+            </div>
+            <div class="action-task">決済・セキュリティ・Cloudflare導入等の相談対応</div>
+            <div class="action-deadline">
+                <span class="deadline-icon">📅</span>
+                <span>次フェーズ</span>
+            </div>
+        </div></div></div>
+        </section>
+    </div>
+    <div class="ig-footer">株式会社Entime / 寺山 大夢</div>
+</body>
+</html>
